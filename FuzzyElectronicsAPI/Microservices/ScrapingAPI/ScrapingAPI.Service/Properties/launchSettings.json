@@ -1,0 +1,44 @@
+﻿{
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:38951",
+      "sslPort": 44355
+    }
+  },
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:5046",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:7047;http://localhost:5046",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SECRET_KEY": "Q2faTxvT8H5DpxlCD6PjueeswaGvYzNjYiLM2ve0hkI=",
+        "PATH_TO_FILE": "C:\\Users\\Vlad\\Desktop\\Self Projects\\FuzzyElectronics\\FuzzyElectronicsAPI\\Microservices\\ScrapingAPI\\ScrapingAPI.Service\\Downloads\\",
+        "MONGO_CONNECTION_STRING": "mongodb+srv://fuzzyelectronicsalex:eBvsUmfwqpbY6ZHW@fuzzyelectronicscluster.93hrrff.mongodb.net/?retryWrites=true&w=majority"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

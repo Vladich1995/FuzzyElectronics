@@ -1,0 +1,30 @@
+.card {
+    width: 20vw;
+    height: 40vh;
+    margin: 2vw;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.imageArea {
+    width: 20vw;
+    height: 30vh;
+    text-align: center;
+}
+
+.summaryArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    height: 10vh;
+}
+
+img {
+    width: 20vw;
+    height: 40vh;
+}
+
+label {
+    font-weight: bold;
+}

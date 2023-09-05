@@ -1,0 +1,20 @@
+.container {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10%;
+    height: 85vh;
+    width: 60vw;
+    background-color: rgb(222, 229, 229);
+    border-radius: 3vh;
+}
+.cartContainer {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 2em;
+    background-color: rgb(222, 229, 229);
+    height: 70vh;
+    width: 60vw;
+    overflow-y: auto;
+}

@@ -1,0 +1,38 @@
+
+
+.navItem {
+    margin: 0;
+}
+
+.navLink {
+    color: white;
+}
+
+.rightSidebar {
+    position: absolute;
+    right: 1vw; /* Place the sidebar on the right side */
+    top: 44vh;
+    bottom: 0;
+    height: 50vh;
+    width: 11vw; /* Adjust the width as needed */
+    background-color: #fdf8f8; /* Black background color */
+    padding-top: 20px;
+    color: white; /* Text color */
+    /* Add more styles as needed */
+}
+.section {
+    text-align: center;
+    border-bottom: black;
+    border-bottom-style: solid;
+    cursor: pointer;
+}
+
+span {
+    color: black;
+    font-weight: bold;
+}
+
+.barItems {
+    background-color: bisque;
+    height: 50vh;
+}

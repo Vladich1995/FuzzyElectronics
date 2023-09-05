@@ -1,0 +1,46 @@
+
+.labelContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Add padding for spacing */
+    background-color: rgb(1, 1, 1);
+  }
+  
+  .leftImage,
+  .rightImage {
+    width: 15vw; /* Adjust the width of the images */
+    height: auto;
+  }
+  
+  .leftImage img,
+  .rightImage img {
+    width: 15vw; /* Ensure images don't exceed their containers */
+    height: auto;
+  }
+  
+  .labels {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10vw; /* Adjust spacing between labels and images */
+  }
+  
+  .labelContainer label {
+    margin-bottom: 10px; /* Add margin between labels */
+    font-size: 30px; /* Adjust font size */
+    color: white; /* Example text color */
+  }
+
+  
+
+.slide{
+    width: 100vw; /* Set the width of the image */
+    height: 40vh; /* Set the height of the image */
+    background-size: auto 100%;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(1, 1, 1);
+}
