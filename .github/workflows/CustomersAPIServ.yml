@@ -8,7 +8,7 @@ env:
   AZURE_WEBAPP_PACKAGE_PATH: CustomersAPI.Service\publish
   CONFIGURATION: Release
   DOTNET_CORE_VERSION: 7.0.x
-  WORKING_DIRECTORY: CustomersAPI.Service
+  WORKING_DIRECTORY: FuzzyElectronicsAPI/Microservices/CustomersAPI/CustomersAPI.Service
 jobs:
   build:
     runs-on: windows-latest
