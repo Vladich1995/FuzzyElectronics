@@ -12,6 +12,9 @@ namespace CustomersAPI.Service.Models.Request.Extensions
             return new CustomerCreateDB
             {
                 PublicId = Guid.NewGuid().ToString(),
+                Fname = model.Fname,
+                Lname = model.Lname,
+                PhoneNumber = model.PhoneNumber,
                 Email = model.Email,
                 Password = encryptionService.Encrypt(model.Password),
             };

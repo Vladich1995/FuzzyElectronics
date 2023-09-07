@@ -1,0 +1,46 @@
+.container {
+    height: 40vh;
+    width: 100vw;
+    background-color: black;
+  }
+  
+  .labels {
+    color: white;
+    font-size: 2vh;
+  }
+  
+  .imagesContainer {
+    height: 40vh;
+  }
+  
+  .image {
+    height: 30vh;
+    width: 10vw;
+  }
+  
+  .carouselItem {
+    height: 40vh;
+    width: 100vw;
+  }
+  
+  .itemContainer {
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+  }
+  
+  .label {
+    color: white;
+    font-size: 3vh;
+  }
+
+  .labelsContainer {
+    color: white;
+    font-size: 2vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

@@ -34,6 +34,11 @@ public class ExceptionHandlingMiddleware
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             await context.Response.WriteAsync($"Database Error: {dbException.Message}");
         }
+        catch (DuplicateEmailException dbException)
+        {
+            context.Response.StatusCode = 400;
+            await context.Response.WriteAsync(dbException.Message);
+        }
 
         // Catches all other type of errors and returns them as 500 InternalServerError response.
         catch (Exception ex)

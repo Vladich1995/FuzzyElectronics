@@ -5,6 +5,7 @@ using CustomersAPI.Service.Models.DB;
 using CustomersAPI.Service.Models.Request;
 using CustomersAPI.Service.Models.Response;
 using CustomersAPI.Service.Models.Response.Extensions;
+using CustomersAPI.Service.Services.DatabaseServices.Exceptions;
 
 namespace CustomersAPI.Service.Services.DatabaseServices.MongoDB
 {
@@ -23,8 +24,13 @@ namespace CustomersAPI.Service.Services.DatabaseServices.MongoDB
         public async Task<LoginCustomerResponse> Create(CustomerCreateDB customer)
         {
             var collection = _database.GetCollection<CustomerCreateDB>("CustomersCollection");
-            await collection.InsertOneAsync(customer);
             var filter = Builders<CustomerCreateDB>.Filter.Eq("Email", customer.Email);
+            var responseCheck = await collection.Find(filter).FirstOrDefaultAsync();
+            if(responseCheck != null)
+            {
+                throw new DuplicateEmailException("There is already a user with this email");
+            }
+            await collection.InsertOneAsync(customer);
             var responseDBmodel = await collection.Find(filter).FirstOrDefaultAsync();
             return CustomerResponseExtensions.MapToLoginCustomerResponse(responseDBmodel, _encryptionService);
         }
@@ -42,6 +48,10 @@ namespace CustomersAPI.Service.Services.DatabaseServices.MongoDB
             if (!string.IsNullOrEmpty(customer.Password))
             {
                 customerToUpdate.Password = _encryptionService.Encrypt(customer.Password);
+            }
+            if (!string.IsNullOrEmpty(customer.PhoneNumber))
+            {
+                customerToUpdate.PhoneNumber = customer.PhoneNumber;
             }
             var replaceResult = await collection.ReplaceOneAsync(filter, customerToUpdate);
 

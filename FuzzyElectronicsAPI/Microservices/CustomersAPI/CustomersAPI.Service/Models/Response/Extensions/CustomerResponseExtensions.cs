@@ -12,6 +12,9 @@ namespace CustomersAPI.Service.Models.Response.Extensions
             return new LoginCustomerResponse
             {
                 Id = model.PublicId,
+                Fname = model.Fname,
+                Lname = model.Lname,
+                PhoneNumber = model.PhoneNumber,
                 Email = model.Email,
                 Password = encryptionService.Decrypt(model.Password),
             };
