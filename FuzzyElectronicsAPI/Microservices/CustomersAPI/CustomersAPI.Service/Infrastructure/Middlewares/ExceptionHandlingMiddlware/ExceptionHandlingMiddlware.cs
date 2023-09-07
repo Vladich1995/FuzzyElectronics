@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Threading.Tasks;
 using CustomersAPI.Service.Services.DatabaseServices.Exceptions;
 using Microsoft.AspNetCore.Http;
@@ -38,6 +39,11 @@ public class ExceptionHandlingMiddleware
         {
             context.Response.StatusCode = 400;
             await context.Response.WriteAsync(dbException.Message);
+        }
+        catch (UnauthorizedAccessException ex)
+        {
+            context.Response.StatusCode = 400;
+            await context.Response.WriteAsync(ex.Message);
         }
 
         // Catches all other type of errors and returns them as 500 InternalServerError response.

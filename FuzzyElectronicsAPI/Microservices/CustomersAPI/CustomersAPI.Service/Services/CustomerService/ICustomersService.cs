@@ -5,12 +5,14 @@ namespace CustomersAPI.Service.Services.CustomerService
 {
     public interface ICustomersService
     {
-        public Task<LoginCustomerResponse> HandleCreate(CreateCustomerRequest request);
+        public Task<CustomerResponse> HandleCreate(CreateCustomerRequest request);
 
-        public Task<LoginCustomerResponse> HandleUpdate(string id, UpdateCustomerRequest request);
+        public Task<CustomerResponse> HandleUpdate(string id, UpdateCustomerRequest request);
 
-        public Task<List<LoginCustomerResponse>> HandleGetAll();
+        public Task<List<CustomerResponse>> HandleGetAll();
 
-        public Task<LoginCustomerResponse> HandleGetById(string id);
+        public Task<CustomerResponse> HandleGetById(string id);
+
+        public Task<CustomerResponse> HandleLogin(LoginCustomerRequest customer);
     }
 }

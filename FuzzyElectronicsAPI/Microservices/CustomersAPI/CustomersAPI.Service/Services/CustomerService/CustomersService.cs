@@ -15,25 +15,30 @@ namespace CustomersAPI.Service.Services.CustomerService
             _encryptionService = encryptionService;
             _dbService = dBService;
         }
-        public async Task<LoginCustomerResponse> HandleCreate(CreateCustomerRequest request)
+        public async Task<CustomerResponse> HandleCreate(CreateCustomerRequest request)
         {
             var requestDB = CustomerRequestExtensions.MapToCustomerCreateDB(request, _encryptionService);
             return await _dbService.Create(requestDB);
         }
 
-        public async Task<LoginCustomerResponse> HandleUpdate(string id, UpdateCustomerRequest request)
+        public async Task<CustomerResponse> HandleUpdate(string id, UpdateCustomerRequest request)
         {
             return await _dbService.Update(id, request);
         }
 
-        public async Task<List<LoginCustomerResponse>> HandleGetAll()
+        public async Task<List<CustomerResponse>> HandleGetAll()
         {
             return await _dbService.GetAll();
         }
 
-        public async Task<LoginCustomerResponse> HandleGetById(string id)
+        public async Task<CustomerResponse> HandleGetById(string id)
         {
             return await _dbService.GetById(id);
+        }
+
+        public async Task<CustomerResponse> HandleLogin(LoginCustomerRequest customer)
+        {
+            return await _dbService.Login(customer);
         }
     }
 }

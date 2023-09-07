@@ -46,5 +46,12 @@ namespace CustomersAPI.Service.Controllers.V1
             var result = await _customersService.HandleGetById(id);
             return Ok(result);
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> CustomerLogin([FromBody] LoginCustomerRequest customer)
+        {
+            var result = await _customersService.HandleLogin(customer);
+            return Ok(result);
+        }
     }
 }

@@ -47,8 +47,12 @@ const SignUpScreen = () => {
               PhoneNumber: PhoneBox
             }),
           });
-          if(response != null){
-            alert(response.Id);
+          if(response.status == 200){
+            const responseData = await response.json();
+            console.log(responseData);
+          }
+          else if(response.status == 400){
+            alert("There is already user with this email")
           }
     } catch (error) {
       console.log(error);

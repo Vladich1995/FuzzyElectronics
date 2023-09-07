@@ -4,7 +4,41 @@ import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer 
 import Header from '../../components/perms/Header';
 
 const SignInScreen = () => {
+    const [EmailBox, setEmailBox] = useState("");
+    const [PasswordBox, setPasswordBox] = useState("");
 
+    const changeEmailHandler = (e) => {
+        setEmailBox(e.target.value);
+    }
+    
+    const changePasswordHandler = (e) => {
+        setPasswordBox(e.target.value);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+              const response = await fetch('https://gatewayapiserv.azurewebsites.net/CustomersAPI/api/v1/Customers/Login', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  Email: EmailBox,
+                  Password: PasswordBox,
+                }),
+              });
+              if(response.status == 200){
+                const responseData = await response.json();
+                console.log(responseData);
+              }
+              else if(response.status == 400){
+                alert("Wrong email or password")
+              }
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
     return (
         <div style={{ overflow: 'hidden', height: '100vh' }}>
@@ -16,14 +50,15 @@ const SignInScreen = () => {
                             <p className="h5 mt-2 py-4 font-weight-bold">Sign in</p>
                         </div>
                         <CDBCardBody className="mx-4">
-                        <CDBInput label="Email" type="email" style={{ '::placeholder': { color: 'grey' } }} />
-                        <CDBInput label="Password" type="password" style={{ '::placeholder': { color: 'grey' } }} />
+                        <form onSubmit={handleSubmit}>
+                        <CDBInput label="Email" type="email" style={{ '::placeholder': { color: 'grey' } }} onChange={changeEmailHandler} />
+                        <CDBInput label="Password" type="password" style={{ '::placeholder': { color: 'grey' } }} onChange={changePasswordHandler} />
                         <div className="mt-5 d-flex flex-wrap justify-content-center align-items-center">
                             <CDBInput type="Checkbox" />
                             <p className="m-1">Remember me</p>
                             <CDBLink to="#" className="m-3"><span className={styles.textCustomColor}>Forgot Password?</span></CDBLink>
                         </div>
-                        <CDBBtn color="dark" outline className="btn-block my-3 mx-0">
+                        <CDBBtn color="dark" outline className="btn-block my-3 mx-0" type="submit">
                             <span >Sign in</span>
                         </CDBBtn>
                         <p className="text-center">
@@ -41,6 +76,7 @@ const SignInScreen = () => {
                                 <CDBIcon fab icon="google-plus-g" />
                             </CDBBtn>
                         </div>
+                        </form>
                         </CDBCardBody>
                     </CDBCard>
                 </CDBContainer>

@@ -7,9 +7,10 @@ namespace CustomersAPI.Service.Services.DatabaseServices
 {
     public interface IDBService
     {
-        public Task<LoginCustomerResponse> Create(CustomerCreateDB customer);
-        public Task<LoginCustomerResponse> Update(string id, UpdateCustomerRequest customer);
-        public Task<List<LoginCustomerResponse>> GetAll();
-        public Task<LoginCustomerResponse> GetById(string id);
+        public Task<CustomerResponse> Create(CustomerCreateDB customer);
+        public Task<CustomerResponse> Update(string id, UpdateCustomerRequest customer);
+        public Task<List<CustomerResponse>> GetAll();
+        public Task<CustomerResponse> GetById(string id);
+        public Task<CustomerResponse> Login(LoginCustomerRequest customer);
     }
 }

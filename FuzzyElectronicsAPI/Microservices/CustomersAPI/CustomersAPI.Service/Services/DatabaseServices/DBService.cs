@@ -15,7 +15,7 @@ namespace CustomersAPI.Service.Services.DatabaseServices
             _DBService = DBService;
         }
 
-        public async Task<LoginCustomerResponse> Create(CustomerCreateDB customer)
+        public async Task<CustomerResponse> Create(CustomerCreateDB customer)
         {
             try
             {
@@ -27,7 +27,7 @@ namespace CustomersAPI.Service.Services.DatabaseServices
             return await _DBService.Create(customer);
         }
 
-        public async Task<LoginCustomerResponse> Update(string id, UpdateCustomerRequest customer)
+        public async Task<CustomerResponse> Update(string id, UpdateCustomerRequest customer)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace CustomersAPI.Service.Services.DatabaseServices
             }
         }
 
-        public async Task<List<LoginCustomerResponse>> GetAll()
+        public async Task<List<CustomerResponse>> GetAll()
         {
             try
             {
@@ -51,7 +51,7 @@ namespace CustomersAPI.Service.Services.DatabaseServices
             }
         }
 
-        public async Task<LoginCustomerResponse> GetById(string id)
+        public async Task<CustomerResponse> GetById(string id)
         {
             try
             {
@@ -61,6 +61,11 @@ namespace CustomersAPI.Service.Services.DatabaseServices
             {
                 throw new DatabaseOperationException("Error getting customer by id");
             }
+        }
+
+        public async Task<CustomerResponse> Login(LoginCustomerRequest customer)
+        {
+            return await _DBService.Login(customer);
         }
     }
 }

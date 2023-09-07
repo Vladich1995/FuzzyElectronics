@@ -7,16 +7,15 @@ namespace CustomersAPI.Service.Models.Response.Extensions
 {
     public static class CustomerResponseExtensions
     {
-        public static LoginCustomerResponse MapToLoginCustomerResponse(this CustomerCreateDB model, IEncryptionService encryptionService)
+        public static CustomerResponse MapToLoginCustomerResponse(this CustomerCreateDB model, IEncryptionService encryptionService)
         {
-            return new LoginCustomerResponse
+            return new CustomerResponse
             {
                 Id = model.PublicId,
                 Fname = model.Fname,
                 Lname = model.Lname,
                 PhoneNumber = model.PhoneNumber,
                 Email = model.Email,
-                Password = encryptionService.Decrypt(model.Password),
             };
         }
     }

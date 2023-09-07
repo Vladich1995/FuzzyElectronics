@@ -21,7 +21,7 @@ namespace CustomersAPI.Service.Services.DatabaseServices.MongoDB
             _encryptionService = encryptionService;
         }
 
-        public async Task<LoginCustomerResponse> Create(CustomerCreateDB customer)
+        public async Task<CustomerResponse> Create(CustomerCreateDB customer)
         {
             var collection = _database.GetCollection<CustomerCreateDB>("CustomersCollection");
             var filter = Builders<CustomerCreateDB>.Filter.Eq("Email", customer.Email);
@@ -34,7 +34,7 @@ namespace CustomersAPI.Service.Services.DatabaseServices.MongoDB
             var responseDBmodel = await collection.Find(filter).FirstOrDefaultAsync();
             return CustomerResponseExtensions.MapToLoginCustomerResponse(responseDBmodel, _encryptionService);
         }
-        public async Task<LoginCustomerResponse> Update(string id, UpdateCustomerRequest customer)
+        public async Task<CustomerResponse> Update(string id, UpdateCustomerRequest customer)
         {
             var collection = _database.GetCollection<CustomerCreateDB>("CustomersCollection");
             var filter = Builders<CustomerCreateDB>.Filter.Eq("PublicId", id);
@@ -59,7 +59,7 @@ namespace CustomersAPI.Service.Services.DatabaseServices.MongoDB
 
             return CustomerResponseExtensions.MapToLoginCustomerResponse(updatedCustomer, _encryptionService);
         }
-        public async Task<List<LoginCustomerResponse>> GetAll()
+        public async Task<List<CustomerResponse>> GetAll()
         {
             var collection = _database.GetCollection<CustomerCreateDB>("CustomersCollection");
 
@@ -70,7 +70,7 @@ namespace CustomersAPI.Service.Services.DatabaseServices.MongoDB
                 .ToList();
             return customersList;
         }
-        public async  Task<LoginCustomerResponse> GetById(string id)
+        public async  Task<CustomerResponse> GetById(string id)
         {
             var collection = _database.GetCollection<CustomerCreateDB>("CustomersCollection");
             var filter = Builders<CustomerCreateDB>.Filter.Eq("PublicId", id);
@@ -80,6 +80,25 @@ namespace CustomersAPI.Service.Services.DatabaseServices.MongoDB
                 throw new KeyNotFoundException("Customer not found");
             }
             return CustomerResponseExtensions.MapToLoginCustomerResponse(customerDB, _encryptionService);
-        }  
+        }
+
+        public async Task<CustomerResponse> Login(LoginCustomerRequest customer)
+        {
+            var collection = _database.GetCollection<CustomerCreateDB>("CustomersCollection");
+            var filter = Builders<CustomerCreateDB>.Filter.Eq("Email", customer.Email);
+            var customerDB = await collection.Find(filter).FirstOrDefaultAsync();
+            if (customerDB == null)
+            {
+                throw new UnauthorizedAccessException("Wrong cridentials");
+            }
+            if(_encryptionService.Decrypt(customerDB.Password) == customer.Password)
+            {
+                return CustomerResponseExtensions.MapToLoginCustomerResponse(customerDB, _encryptionService);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("Wrong cridentials");
+            }
+        }
     }
 }
