@@ -2,10 +2,13 @@ import { useState } from 'react';
 import styles from './SignInScreen.module.css';
 import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import Header from '../../components/perms/Header';
+import { useAuth } from '../../components/Contexts/AuthContext';
 
 const SignInScreen = () => {
     const [EmailBox, setEmailBox] = useState("");
     const [PasswordBox, setPasswordBox] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
+    const { setUser } = useAuth();
 
     const changeEmailHandler = (e) => {
         setEmailBox(e.target.value);
@@ -14,6 +17,10 @@ const SignInScreen = () => {
     const changePasswordHandler = (e) => {
         setPasswordBox(e.target.value);
     }
+
+    const changeCheckboxHandler = (e) => {
+        setRememberMe(e.target.checked);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -31,6 +38,10 @@ const SignInScreen = () => {
               if(response.status == 200){
                 const responseData = await response.json();
                 console.log(responseData);
+                setUser(responseData); 
+                if (rememberMe) {
+                    localStorage.setItem('user', JSON.stringify(responseData)); // Store user data only if "Remember me" is checked
+                }
               }
               else if(response.status == 400){
                 alert("Wrong email or password")
@@ -54,7 +65,7 @@ const SignInScreen = () => {
                         <CDBInput label="Email" type="email" style={{ '::placeholder': { color: 'grey' } }} onChange={changeEmailHandler} />
                         <CDBInput label="Password" type="password" style={{ '::placeholder': { color: 'grey' } }} onChange={changePasswordHandler} />
                         <div className="mt-5 d-flex flex-wrap justify-content-center align-items-center">
-                            <CDBInput type="Checkbox" />
+                            <CDBInput type="Checkbox" onChange={changeCheckboxHandler} />
                             <p className="m-1">Remember me</p>
                             <CDBLink to="#" className="m-3"><span className={styles.textCustomColor}>Forgot Password?</span></CDBLink>
                         </div>
@@ -73,7 +84,10 @@ const SignInScreen = () => {
                                 <CDBIcon fab icon="facebook-f" />
                             </CDBBtn>
                             <CDBBtn color="white" className="m-0 outline-btn">
-                                <CDBIcon fab icon="google-plus-g" />
+                                <CDBIcon fab icon="google" />
+                            </CDBBtn>
+                            <CDBBtn color="white" className="m-0 outline-btn">
+                                <CDBIcon icon="envelope" />
                             </CDBBtn>
                         </div>
                         </form>

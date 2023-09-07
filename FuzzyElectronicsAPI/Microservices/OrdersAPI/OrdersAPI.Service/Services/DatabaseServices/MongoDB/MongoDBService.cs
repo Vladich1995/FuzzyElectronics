@@ -181,5 +181,21 @@ namespace OrdersAPI.Service.Services.DatabaseServices.MongoDB
             orderDB.IsSold = true;
             var replaceResult = await collection.ReplaceOneAsync(filter, orderDB);
         }
+
+        public async Task<List<OrderedBuildDB>> GetBuildOrdersByCustomer(string customerId)
+        {
+            var collection = _database.GetCollection<OrderedBuildDB>("OrderedBuilds");
+            var filter = Builders<OrderedBuildDB>.Filter.Eq("CustomerId", customerId);
+            var orders = await collection.Find(filter).ToListAsync();
+            return orders;
+        }
+
+        public async Task<List<OrderedProductDB>> GetProductOrdersByCustomer(string customerId)
+        {
+            var collection = _database.GetCollection<OrderedProductDB>("OrderedProducts");
+            var filter = Builders<OrderedProductDB>.Filter.Eq("CustomerId", customerId);
+            var orders = await collection.Find(filter).ToListAsync();
+            return orders;
+        }
     }
 }

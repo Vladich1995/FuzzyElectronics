@@ -14,6 +14,7 @@ namespace OrdersAPI.Service.Services.DatabaseServices
         public Task<OrderedBuildDB> GetBuildOrderById(string id);
         public Task<List<OrderedBuildDB>> GetSoldBuildOrders();
         public Task MarkBuildAsSold(string id);
+        public Task<List<OrderedBuildDB>> GetBuildOrdersByCustomer(string customerId);
 
         public Task<bool> VerifySingleProductExistance(ProductData data);
         public Task PlaceProductOrderForConfirmation(OrderedProductDB productDB);
@@ -23,5 +24,6 @@ namespace OrdersAPI.Service.Services.DatabaseServices
         public Task<OrderedProductDB> GetProductOrderById(string id);
         public Task<List<OrderedProductDB>> GetSoldProductOrders();
         public Task MarkProductAsSold(string id);
+        public Task<List<OrderedProductDB>> GetProductOrdersByCustomer(string customerId);
     }
 }

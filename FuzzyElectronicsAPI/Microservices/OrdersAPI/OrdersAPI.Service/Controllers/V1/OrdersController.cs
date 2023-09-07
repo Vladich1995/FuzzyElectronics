@@ -156,5 +156,32 @@ namespace OrdersAPI.Service.Controllers.V1
             await _orderService.HandleMarkProductAsSold(id);
             return Ok();
         }
+
+        [HttpGet]
+        [Route("GetBuildOrdersByCustomer")]
+
+        public async Task<IActionResult> GetBuildOrdersByCustomer([FromQuery] string id)
+        {
+            var result = await _orderService.HandleGetBuildOrdersByCustomer(id);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetProductOrdersByCustomer")]
+
+        public async Task<IActionResult> GetProductOrdersByCustomer([FromQuery] string id)
+        {
+            var result = await _orderService.HandleGetProductOrdersByCustomer(id);
+            return Ok(result);
+        }
+
+        [HttpGet]
+        [Route("GetOrdersCountByCustomer")]
+
+        public async Task<IActionResult> GetOrdersCountByCustomer([FromQuery] string id)
+        {
+            var result = await _orderService.GetOrdersCountByCustomer(id);
+            return Ok(result);
+        }
     }
 }

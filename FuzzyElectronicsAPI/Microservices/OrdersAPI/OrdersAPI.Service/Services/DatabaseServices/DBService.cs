@@ -85,5 +85,14 @@ namespace OrdersAPI.Service.Services.DatabaseServices
         {
             await _DBService.MarkProductAsSold(id);
         }
+
+        public async Task<List<OrderedBuildDB>> GetBuildOrdersByCustomer(string customerId)
+        {
+            return await _DBService.GetBuildOrdersByCustomer(customerId);
+        }
+        public async Task<List<OrderedProductDB>> GetProductOrdersByCustomer(string customerId)
+        {
+            return await _DBService.GetProductOrdersByCustomer(customerId);
+        }
     }
 }

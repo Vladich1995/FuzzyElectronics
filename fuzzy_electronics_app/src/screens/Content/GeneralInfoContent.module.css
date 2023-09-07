@@ -1,0 +1,17 @@
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.infoPair {
+    height: 10%;
+    width: 100%;
+}
+
+.label {
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    font-size: 3vh;
+    border-bottom-style: solid;
+}

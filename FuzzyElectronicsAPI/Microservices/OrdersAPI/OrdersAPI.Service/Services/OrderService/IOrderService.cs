@@ -14,6 +14,8 @@ namespace OrdersAPI.Service.Services.OrderService
         public Task<OrderedBuildResponse> HandleGetBuildOrderById(string id);
         public Task<List<OrderedBuildResponse>> HandleGetSoldBuildOrders();
         public Task HandleMarkBuildAsSold(string id);
+        public Task<List<OrderedBuildDB>> HandleGetBuildOrdersByCustomer(string customerId);
+
 
         public Task HandlePlaceProductOrder(OrderedProduct product);
         public Task<List<OrderedProductResponse>> HandleGetProductOrdersForConfirmation();
@@ -22,5 +24,7 @@ namespace OrdersAPI.Service.Services.OrderService
         public Task<OrderedProductResponse> HandleGetProductOrderById(string id);
         public Task<List<OrderedProductResponse>> HandleGetSoldProductOrders();
         public Task HandleMarkProductAsSold(string id);
+        public Task<List<OrderedProductDB>> HandleGetProductOrdersByCustomer(string customerId);
+        public Task<int> GetOrdersCountByCustomer(string id);
     }
 }

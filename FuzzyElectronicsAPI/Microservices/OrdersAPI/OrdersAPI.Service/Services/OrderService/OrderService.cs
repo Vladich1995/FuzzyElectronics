@@ -127,5 +127,19 @@ namespace OrdersAPI.Service.Services.OrderService
         {
             await _dBService.MarkProductAsSold(id);
         }
+        public async Task<List<OrderedBuildDB>> HandleGetBuildOrdersByCustomer(string customerId)
+        {
+            return await _dBService.GetBuildOrdersByCustomer(customerId);
+        }
+        public async Task<List<OrderedProductDB>> HandleGetProductOrdersByCustomer(string customerId)
+        {
+            return await _dBService.GetProductOrdersByCustomer(customerId);
+        }
+        public async Task<int> GetOrdersCountByCustomer(string id)
+        {
+            var resBuilds = await HandleGetBuildOrdersByCustomer(id);
+            var resProducts = await HandleGetProductOrdersByCustomer(id);
+            return resBuilds.Count + resProducts.Count;
+        }
     }
 }

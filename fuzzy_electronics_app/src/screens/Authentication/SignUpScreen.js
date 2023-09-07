@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './SignUpScreen.module.css';
 import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import Header from '../../components/perms/Header';
+import { useAuth } from '../../components/Contexts/AuthContext';
 
 const SignUpScreen = () => {
   const [FnameBox, setFnameBox] = useState("");
@@ -9,6 +10,8 @@ const SignUpScreen = () => {
   const [EmailBox, setEmailBox] = useState("");
   const [PasswordBox, setPasswordBox] = useState("");
   const [PhoneBox, setPhoneBox] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+  const { setUser } = useAuth();
 
   const changeFnameHandler = (e) => {
     setFnameBox(e.target.value);
@@ -31,6 +34,10 @@ const SignUpScreen = () => {
     setPhoneBox(e.target.value);
   }
 
+  const changeCheckboxHandler = (e) => {
+    setRememberMe(e.target.checked);
+};
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -50,6 +57,10 @@ const SignUpScreen = () => {
           if(response.status == 200){
             const responseData = await response.json();
             console.log(responseData);
+            setUser(responseData); 
+            if (rememberMe) {
+                localStorage.setItem('user', JSON.stringify(responseData)); // Store user data only if "Remember me" is checked
+            }
           }
           else if(response.status == 400){
             alert("There is already user with this email")
@@ -83,7 +94,7 @@ const SignUpScreen = () => {
                   <CDBInput material placeholder="Password" type="password" onChange={changePasswordHandler} />
                   <CDBInput material placeholder="Phone number" type="tel" onChange={changePhoneHandler} />
                   <div className="d-flex justify-content-center align-items-center mt-4">
-                    <CDBInput type="Checkbox" />
+                    <CDBInput type="Checkbox" onChange={changeCheckboxHandler} />
                     <p className="m-1">Remember me</p>
                   </div>
                   <CDBBtn type="submit" color="dark" className="btn-block my-3 mx-0">
@@ -95,7 +106,10 @@ const SignUpScreen = () => {
                       <CDBIcon fab icon="facebook-f" />
                     </CDBBtn>
                     <CDBBtn color="white" className="m-0" style={{ boxShadow: 'none' }}>
-                      <CDBIcon fab icon="google-plus-g" />
+                      <CDBIcon fab icon="google" />
+                    </CDBBtn>
+                    <CDBBtn color="white" className="m-0 outline-btn">
+                      <CDBIcon icon="envelope" />
                     </CDBBtn>
                   </div>
                   <p className="text-center m-0">
