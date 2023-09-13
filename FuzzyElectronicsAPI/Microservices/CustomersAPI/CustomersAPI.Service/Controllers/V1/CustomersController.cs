@@ -23,9 +23,8 @@ namespace CustomersAPI.Service.Controllers.V1
             return Ok(result);
         }
 
-        [HttpPut]
-        [Route("{id}")]
-        public async Task<IActionResult> UpdateCustomer([FromRoute] string id, [FromBody] UpdateCustomerRequest customer)
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateCustomer([FromQuery] string id, [FromBody] UpdateCustomerRequest customer)
         {
             var result = await _customersService.HandleUpdate(id, customer);
             return Ok(result);

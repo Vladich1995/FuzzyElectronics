@@ -3,6 +3,7 @@ import styles from './SignUpScreen.module.css';
 import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import Header from '../../components/perms/Header';
 import { useAuth } from '../../components/Contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpScreen = () => {
   const [FnameBox, setFnameBox] = useState("");
@@ -12,6 +13,7 @@ const SignUpScreen = () => {
   const [PhoneBox, setPhoneBox] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const { setUser } = useAuth();
+  const navigate = useNavigate();
 
   const changeFnameHandler = (e) => {
     setFnameBox(e.target.value);
@@ -58,8 +60,12 @@ const SignUpScreen = () => {
             const responseData = await response.json();
             console.log(responseData);
             setUser(responseData); 
+            sessionStorage.setItem('user', JSON.stringify(responseData));
             if (rememberMe) {
                 localStorage.setItem('user', JSON.stringify(responseData)); // Store user data only if "Remember me" is checked
+            }
+            if(responseData.email != "alex@gmail.com"){
+              navigate("/home")
             }
           }
           else if(response.status == 400){

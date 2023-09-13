@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import styles from './CustomerHomeScreen.module.css';
 import Header from '../components/perms/Header';
 import HomeCarousel from '../components/perms/HomeCarousel';
 import OnSaleItemsContent from './Content/OnSaleItemsContent';
-import styles from './HomeScreen.module.css';
 
-const HomeScreen = () => {
-
-
+const CustomerHomeScreen = () => {
     return (
         <div className={styles.pageContainer}>
             <Header />
@@ -14,6 +11,6 @@ const HomeScreen = () => {
             <OnSaleItemsContent />
         </div>
     );
-};
+}
 
-export default HomeScreen;
+export default CustomerHomeScreen;

@@ -1,0 +1,25 @@
+.container{
+    height: 50vh;
+    width: 20vw;
+    margin: auto;
+    cursor: pointer;
+}
+
+.imageArea {
+    height: 30vh;
+    width: 20vw;
+}
+
+.image {
+    height: 30vh;
+    width: 100%;
+}
+
+.labelsArea {
+    height: 20vh;
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

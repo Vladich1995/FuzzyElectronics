@@ -1,0 +1,17 @@
+.onSaleArea {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 10vh;
+    row-gap: 10vh;
+    margin-top: 10vh;
+}
+
+.buttonArea {
+    height: 10vh;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

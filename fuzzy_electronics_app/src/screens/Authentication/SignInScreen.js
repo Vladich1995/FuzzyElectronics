@@ -3,12 +3,14 @@ import styles from './SignInScreen.module.css';
 import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer } from 'cdbreact';
 import Header from '../../components/perms/Header';
 import { useAuth } from '../../components/Contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const SignInScreen = () => {
     const [EmailBox, setEmailBox] = useState("");
     const [PasswordBox, setPasswordBox] = useState("");
     const [rememberMe, setRememberMe] = useState(false);
     const { setUser } = useAuth();
+    const navigate = useNavigate();
 
     const changeEmailHandler = (e) => {
         setEmailBox(e.target.value);
@@ -39,8 +41,12 @@ const SignInScreen = () => {
                 const responseData = await response.json();
                 console.log(responseData);
                 setUser(responseData); 
+                sessionStorage.setItem('user', JSON.stringify(responseData));
                 if (rememberMe) {
-                    localStorage.setItem('user', JSON.stringify(responseData)); // Store user data only if "Remember me" is checked
+                    localStorage.setItem('user', JSON.stringify(responseData)); 
+                }
+                if(responseData.email != "alex@gmail.com"){
+                    navigate("/home")
                 }
               }
               else if(response.status == 400){

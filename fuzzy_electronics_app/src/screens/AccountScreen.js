@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styles from './AccountScreen.module.css';
 import Header from '../components/perms/Header';
 import GeneralInfoContent from './Content/GeneralInfoContent';
+import UpdateLoginContent from './Content/UpdateLoginContent';
 
 const AccountScreen = () => {
     const [generalClicked, setGeneralClicked] = useState(true);
@@ -44,6 +45,7 @@ const AccountScreen = () => {
           <div className={styles.detailsContainer}>
             <div className={styles.content}>
                 {generalClicked && <GeneralInfoContent />}
+                {loginInfoClicked && <UpdateLoginContent />}
             </div>
             <div className={styles.menu}>
                 <div className={styles.menuItem} style={{backgroundColor: generalClicked && 'grey'}} onClick={handleGeneralClicked}><span className={styles.text}>כללי</span></div>

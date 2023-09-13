@@ -20,7 +20,7 @@ namespace ScrapingAPI.Service.Services.ScrapingServices
         {
             // Configure PuppeteerSharp to use a headless browser
             new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision).Wait();
-            var launchOptions = new LaunchOptions { Headless = false };
+            var launchOptions = new LaunchOptions { Headless = true };
             _browser = Puppeteer.LaunchAsync(launchOptions).GetAwaiter().GetResult();
             _dBService = dBService;
         }

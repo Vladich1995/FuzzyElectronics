@@ -7,19 +7,41 @@ import Navbar from 'react-bootstrap/Navbar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { useAuth } from '../Contexts/AuthContext';
+import { useEffect, useState } from 'react';
 
 const Header = (props) => {
-  const {user, setUser} = useAuth();
+  const [user, assignUser] = useState(null);
+  const { setUser, getUser} = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const userData = getUser();
+    assignUser(userData);
+  }, [])
+
 
   const logoutHandler = () => {
     setUser(null);
+    sessionStorage.removeItem('user');
     localStorage.removeItem('user');
     navigate('/');
   }
 
   const accountDetailsHandler = () => {
     navigate("/account");
+  }
+
+  const cartHandler = () => {
+    navigate("/cart");
+  }
+
+  const homeHandler = () => {
+    if( user != null) {
+      navigate('/home');
+    }
+    else{
+      navigate('/');
+    }
   }
 
   return (
@@ -41,7 +63,7 @@ const Header = (props) => {
           </DropdownButton></span></Nav.Link>}
             </Nav>
             <Nav className="me-3">
-              <Nav.Link ><span className={styles.navItem}><FaShoppingCart size={"2vh"} /></span></Nav.Link>
+              <Nav.Link onClick={cartHandler} ><span className={styles.navItem}><FaShoppingCart size={"2vh"} /></span></Nav.Link>
             </Nav>
             <Nav className="me-3">
               <Nav.Link><span className={styles.navItem}>
@@ -59,7 +81,7 @@ const Header = (props) => {
               <Nav.Link><span className={`${styles.navItem} me-3`}>אודות</span></Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="/"><span className={`${styles.navItem} ${styles.logoNavItem}`}>FuzzyElectronics</span></Nav.Link>
+              <Nav.Link onClick={homeHandler}><span className={`${styles.navItem} ${styles.logoNavItem}`}>FuzzyElectronics</span></Nav.Link>
             </Nav>
           </Container>
         </Navbar>

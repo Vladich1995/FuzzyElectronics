@@ -1,0 +1,37 @@
+.container {
+    height: 80vh;
+    width: 100%;
+    display: flex;
+}
+
+.imageArea {
+    height: 50vh;
+    width: 30vw;
+    margin-left: 10vh;
+}
+
+.image {
+    height: 50vh;
+    width: 30vw;
+}
+
+.labelsArea {
+    height: 50vh;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.label {
+    font-size: 3vh;
+}
+
+.buttonArea {
+    height: 10vh;
+    width: 30vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

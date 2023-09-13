@@ -4,6 +4,7 @@ using ScrapingAPI.Service.Models.Scraping.MergedPartModels;
 using ScrapingAPI.Service.Models.Scraping.ScrapedPartModels;
 using ScrapingAPI.Service.Services.ProductsFileServices.Exceptions;
 using ScrapingAPI.Service.Services.DatabaseServices;
+using System.Text.RegularExpressions;
 
 namespace ScrapingAPI.Service.Services.ExcelServices
 {
@@ -46,7 +47,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -93,7 +94,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -142,7 +143,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -189,7 +190,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -238,7 +239,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -283,7 +284,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -334,7 +335,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -380,7 +381,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -428,7 +429,7 @@ namespace ScrapingAPI.Service.Services.ExcelServices
                             MakatDeveloper = item1.MakatDeveloper,
                             Description = item1.Description,
                             Category = item1.Category,
-                            Price = item1.Price,
+                            Price = PriceToNumber(item1.Price),
                             PictureURL = item1.PictureURL,
                             Brand = item1.Developer,
                             Model = item2.Model,
@@ -455,8 +456,17 @@ namespace ScrapingAPI.Service.Services.ExcelServices
             {
                 throw new MergingOperationException("An error occurred merging VGA data");
             }
+        }
 
-            
+        public string PriceToNumber(string price)
+        {
+            // Define a regular expression pattern to match the number
+            string pattern = @"(\d+)";
+
+            // Use Regex.Match to find the first match in the input string
+            Match match = Regex.Match(price, pattern);
+            string number = match.Groups[1].Value;
+            return number;
         }
     }
 }
