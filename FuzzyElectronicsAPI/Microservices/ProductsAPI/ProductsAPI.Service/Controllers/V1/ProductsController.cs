@@ -279,5 +279,30 @@ namespace ProductsAPI.Service.Controllers.V1
             var result = await _dBService.VerifyProductExistance(products);
             return Ok(result);
         }
+
+        [HttpGet]
+        [Route("types")]
+        public async Task<IActionResult> GetAvailabaleBuildTypes()
+        {
+            var result = await _dBService.GetAvailableBuildTypes();
+            return Ok(result);
+        }
+
+        [HttpPut]
+        [Route("subtype")]
+        public async Task<IActionResult> SubBuildType( eBuildTypes type)
+        {
+            await _dBService.SubBuildTypes(type);
+            return Ok();
+        }
+
+        [HttpPut]
+        [Route("addtype")]
+        public async Task<IActionResult> AddBuildType(eBuildTypes type)
+        {
+            await _dBService.AddBuildTypes(type);
+            return Ok();
+        }
+
     }
 }

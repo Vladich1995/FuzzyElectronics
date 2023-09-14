@@ -1,0 +1,51 @@
+.page {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.centeredContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Center vertically on the viewport height */
+    overflow: hidden;
+}
+
+.detailsContainer {
+    margin-bottom: 10vh;
+    height: 70vh;
+    width: 50vw;
+    border-style: solid;
+    border-radius: 1vh;
+    border-width: 0.001vh;
+    overflow: hidden;
+    display: flex;
+}
+
+.menu {
+    height: 70vh;
+    width: 20%;
+    background-color: black;
+}
+
+.content {
+    height: 70vh;
+    width: 80%;
+}
+
+.menuItem {
+    width: 10vw;
+    height: 4vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border-bottom-style: solid;
+    cursor: pointer;
+}
+
+.text {
+    font-size: 2vh;
+    color: white;
+}

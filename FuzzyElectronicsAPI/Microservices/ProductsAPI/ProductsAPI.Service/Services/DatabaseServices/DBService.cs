@@ -70,5 +70,19 @@ namespace ProductsAPI.Service.Services.DatabaseServices
         {
             return await _DBService.VerifyProductExistance(products);
         }
+
+        public async Task<BuildTypesResponse> GetAvailableBuildTypes()
+        {
+            return await _DBService.GetAvailableBuildTypes();
+        }
+
+        public async Task SubBuildTypes(eBuildTypes type)
+        {
+            await _DBService.SubBuildTypes(type);
+        }
+        public async Task AddBuildTypes(eBuildTypes type)
+        {
+            await _DBService.AddBuildTypes(type);
+        }
     }
 }

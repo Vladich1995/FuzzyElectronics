@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+}
+
+.sideBar {
+    width: 15vw;
+}
+
+.content {
+    width: 85vw;
+    height: 90vh;
+}

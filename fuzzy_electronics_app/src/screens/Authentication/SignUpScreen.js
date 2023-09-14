@@ -67,6 +67,9 @@ const SignUpScreen = () => {
             if(responseData.email != "alex@gmail.com"){
               navigate("/home")
             }
+            else {
+              navigate("/admin");
+            }
           }
           else if(response.status == 400){
             alert("There is already user with this email")

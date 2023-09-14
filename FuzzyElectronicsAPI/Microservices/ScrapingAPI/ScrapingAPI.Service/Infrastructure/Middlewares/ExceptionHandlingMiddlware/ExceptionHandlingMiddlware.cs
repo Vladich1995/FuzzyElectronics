@@ -33,18 +33,21 @@ public class ExceptionHandlingMiddleware
         catch (DatabaseOperationException dbException)
         {
             // Handle the custom exception, log it, and possibly return a custom response.
+            Console.WriteLine(dbException.Message);
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             await context.Response.WriteAsync($"Database Error: {dbException.Message}");
         }
         catch (MergingOperationException mergingException)
         {
             // Handle the custom exception, log it, and possibly return a custom response.
+            Console.WriteLine(mergingException.Message);
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             await context.Response.WriteAsync($"File Merging Error: {mergingException.Message}");
         }
         catch (ReadingOperationException readingException)
         {
             // Handle the custom exception, log it, and possibly return a custom response.
+            Console.WriteLine(readingException.Message);
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             await context.Response.WriteAsync($"File Reading Error: {readingException.Message}");
         }

@@ -1,4 +1,5 @@
 import styles from './OnSaleItem.module.css';
+import { FaShekelSign } from 'react-icons/fa';
 
 const OnSaleItem = (props) => {
 
@@ -13,7 +14,7 @@ const OnSaleItem = (props) => {
             </div>
             <div className={styles.labelsArea}>
                 <label className={styles.brand}>{props.product.brand}</label>
-                <label className={styles.price}>{props.product.price}</label>
+                <label className={styles.price}>{props.product.price} <FaShekelSign /></label>
                 <label className={styles.sale}>{props.product.isOnSale}</label>
             </div>
         </div>

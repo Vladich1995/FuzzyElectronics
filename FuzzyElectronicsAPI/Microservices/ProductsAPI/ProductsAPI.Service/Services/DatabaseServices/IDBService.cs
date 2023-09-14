@@ -21,5 +21,9 @@ namespace ProductsAPI.Service.Services.DatabaseServices
         public Task CreateComputerBuild(ComputerBuildRequest build);
         public Task<ComputerBuildResponse> GetComputerBuildByType(eBuildTypes type);
         public Task<List<string>> VerifyProductExistance(Verification products);
+        public Task<BuildTypesResponse> GetAvailableBuildTypes();
+
+        public Task SubBuildTypes(eBuildTypes type);
+        public Task AddBuildTypes(eBuildTypes type);
     }
 }

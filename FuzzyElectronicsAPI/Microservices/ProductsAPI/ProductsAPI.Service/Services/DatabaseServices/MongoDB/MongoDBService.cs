@@ -287,5 +287,37 @@ namespace ProductsAPI.Service.Services.DatabaseServices.MongoDB
             }
             return outOfStock;
         }
+
+        public async Task<BuildTypesResponse> GetAvailableBuildTypes()
+        {
+            var collection = _database.GetCollection<BuildTypesResponse>("NotCreatedBuildTypes");
+            var filter = Builders<BuildTypesResponse>.Filter.Empty;
+            var responseList = await collection.Find(filter).FirstOrDefaultAsync();
+            if (responseList == null)
+            {
+                throw new KeyNotFoundException();
+            }
+            return responseList;
+        }
+
+        public async Task SubBuildTypes(eBuildTypes type)
+        {
+            var collection = _database.GetCollection<BuildTypesResponse>("NotCreatedBuildTypes");
+            var filter = Builders<BuildTypesResponse>.Filter.Empty;
+            var response = await collection.Find(filter).FirstOrDefaultAsync();
+            response.BuildTypes.Remove(type.ToString());
+            var update = Builders<BuildTypesResponse>.Update.Set(x => x.BuildTypes, response.BuildTypes);
+            var updateResult = await collection.ReplaceOneAsync(filter, response);
+        }
+
+        public async Task AddBuildTypes(eBuildTypes type)
+        {
+            var collection = _database.GetCollection<BuildTypesResponse>("NotCreatedBuildTypes");
+            var filter = Builders<BuildTypesResponse>.Filter.Empty;
+            var response = await collection.Find(filter).FirstOrDefaultAsync();
+            response.BuildTypes.Add(type.ToString());
+            var update = Builders<BuildTypesResponse>.Update.Set(x => x.BuildTypes, response.BuildTypes);
+            var updateResult = await collection.ReplaceOneAsync(filter, response);
+        }
     }
 }

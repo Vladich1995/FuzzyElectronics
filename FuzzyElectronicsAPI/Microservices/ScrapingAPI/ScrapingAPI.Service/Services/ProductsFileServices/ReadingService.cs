@@ -335,13 +335,11 @@ namespace ScrapingAPI.Service.Services.ConvertionServices
                     {
                         int rowCount = worksheet.Dimension.Rows;
                         int colCount = worksheet.Dimension.Columns;
-
                         // Assuming the first row contains column headers, start reading from the second row.
                         for (int row = 2; row <= rowCount; row++)
                         {
                             PeripheralsData peripheralsData = WorksheetConvertion.PeripheralsDataToObject(worksheet, row);
                             bool shouldSkip = string.IsNullOrEmpty(peripheralsData.Price) || peripheralsData.Price.Equals("Price");
-
                             if (!shouldSkip)
                             {
                                 peripheralsDataList.Add(peripheralsData);
@@ -354,6 +352,7 @@ namespace ScrapingAPI.Service.Services.ConvertionServices
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 throw new ReadingOperationException("An error occurred reading Peripheral data from excel");
             }
             
@@ -411,7 +410,6 @@ namespace ScrapingAPI.Service.Services.ConvertionServices
             }
 
             string filePath = xlsxFiles[0];
-
             await ConvertCsvToArray();
 
             var tasks = new List<Task<bool>>();

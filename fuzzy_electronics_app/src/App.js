@@ -9,6 +9,12 @@ import AccountScreen from "./screens/AccountScreen";
 import CustomerHomeScreen from "./screens/CustomerHomeScreen";
 import OnSaleItemScreen from "./screens/OnSaleItemScreen";
 import CartScreen from "./screens/CartScreen";
+import AdminScreen from "./screens/AdminScreens/AdminScreen";
+import ClientsScreen from "./screens/AdminScreens/ClientsScreen";
+import CreateBuildScreen from "./screens/AdminScreens/CreateBuildScreen";
+import WaitingOrdersScreen from "./screens/AdminScreens/WaitingOrdersScreen";
+import DoneDealsScreen from "./screens/AdminScreens/DoneDealsScreen";
+import AdminAccountScreen from "./screens/AdminAccountScreen";
 
 function App() {
   return (
@@ -32,6 +38,12 @@ function AppRoutes() {
                 <Route path="/home" element={<CustomerHomeScreen />} exact />
                 <Route path="/onsale" element={<OnSaleItemScreen />} exact />
                 <Route path="/cart" element={<CartScreen />} exact />
+                <Route path="/admin" element={<AdminScreen />} exact />
+                <Route path="/createbuild" element={<CreateBuildScreen />} exact />
+                <Route path="/waitingorders" element={<WaitingOrdersScreen />} exact />
+                <Route path="/donedeals" element={<DoneDealsScreen />} exact />
+                <Route path="/clients" element={<ClientsScreen />} exact />
+                <Route path="/adminaccount" element={<AdminAccountScreen />} exact />
               </Routes>
             </Router>
         </CartProvider>

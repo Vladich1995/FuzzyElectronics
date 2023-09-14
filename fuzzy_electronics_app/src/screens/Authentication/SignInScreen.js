@@ -48,6 +48,9 @@ const SignInScreen = () => {
                 if(responseData.email != "alex@gmail.com"){
                     navigate("/home")
                 }
+                else {
+                    navigate("/admin")
+                }
               }
               else if(response.status == 400){
                 alert("Wrong email or password")

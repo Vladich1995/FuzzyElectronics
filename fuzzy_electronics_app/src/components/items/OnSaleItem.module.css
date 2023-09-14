@@ -23,3 +23,12 @@
     justify-content: center;
     align-items: center;
 }
+
+.price {
+    font-weight: bold;
+}
+
+.sale {
+    color: rgb(45, 133, 48);
+    font-weight: bold;
+}
