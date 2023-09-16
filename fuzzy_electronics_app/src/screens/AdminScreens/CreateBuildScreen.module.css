@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    overflow-y: hidden;
 }
 
 .sideBar {
@@ -9,4 +10,5 @@
 .content {
     width: 85vw;
     height: 90vh;
+    overflow-y: auto;
 }

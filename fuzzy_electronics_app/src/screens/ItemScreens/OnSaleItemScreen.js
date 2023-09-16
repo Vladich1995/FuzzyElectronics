@@ -1,9 +1,9 @@
 import styles from './OnSaleItemScreen.module.css';
-import Header from '../components/perms/Header';
+import Header from '../../components/perms/Header';
 import { useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FaShoppingCart } from 'react-icons/fa';
-import { useCart } from '../components/Contexts/CartContext';
+import { useCart } from '../../components/Contexts/CartContext';
 
 const OnSaleItemScreen = () => {
     const location = useLocation();

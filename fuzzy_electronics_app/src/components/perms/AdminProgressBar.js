@@ -1,9 +1,9 @@
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import styles from './AdminProgressBar.module.css';
 import { useState } from 'react';
+import { useBuild } from '../Contexts/BuildContext';
 
 const AdminProgressBar = (props) => {
-
     return (
         <ProgressBar>
             <div>

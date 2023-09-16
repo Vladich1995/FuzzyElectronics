@@ -1,0 +1,41 @@
+.title {
+    text-align: center;
+    margin-top: 5vh;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5vw;
+    row-gap: 5vh;
+    margin-top: 10vh;
+}
+
+.item {
+    height: 10vh;
+    width: 10vw;
+    border-style: solid;
+    border-radius: 1vh;
+    border-width: 0.01vh;
+    font-size: 2vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2vw;
+    margin: auto;
+    background-color: rgb(228, 216, 193);
+    cursor: pointer;
+}
+
+.selectedItem {
+    background-color: rgb(183, 224, 183);
+}
+
+.buttonArea {
+    height: 10vh;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

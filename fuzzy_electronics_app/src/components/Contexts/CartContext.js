@@ -17,14 +17,6 @@ export function CartProvider({ children }) {
     }
   }, []);
 
-  // const addProduct = (product) => {
-  //   console.log("adding")
-  //   setProductsList((prevList) => {
-  //     const updatedList = [...prevList, product];
-  //     localStorage.setItem('cart', JSON.stringify(updatedList));
-  //     return updatedList; // Update the state after setting localStorage
-  //   });
-  // }
 
   const addProduct = (newProduct) => {
     setProductsList((prevList) => {
@@ -50,11 +42,6 @@ export function CartProvider({ children }) {
     });
   };
 
-  // const removeProduct = (makatMorLevi) => {
-  //   const updatedList = productsList.filter((product) => product.makatMorLevi !== makatMorLevi);
-  //   setProductsList(updatedList);
-  //   localStorage.setItem('cart', JSON.stringify(updatedList));
-  // };
 
   const removeProduct = (makatMorLevi) => {
     setProductsList((prevList) => {
