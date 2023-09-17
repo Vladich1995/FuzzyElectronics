@@ -1,4 +1,4 @@
-import styles from './CasesItemScreen.module.css';
+import styles from './ItemScreenStyles.module.css';
 import Header from '../../components/perms/Header';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';

@@ -61,6 +61,11 @@ namespace ProductsAPI.Service.Services.DatabaseServices
         {
             await _DBService.CreateComputerBuild(build);
         }
+
+        public async Task<List<ComputerBuildResponse>> GetAllBuilds()
+        {
+            return await _DBService.GetAllBuilds();
+        }
         public async Task<ComputerBuildResponse> GetComputerBuildByType(eBuildTypes type)
         {
             return await _DBService.GetComputerBuildByType(type);

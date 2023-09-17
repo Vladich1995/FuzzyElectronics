@@ -19,6 +19,8 @@ namespace ProductsAPI.Service.Services.DatabaseServices.MongoDB
         public Task<List<VGADataResponse>> GetVGAPaginated(string collectionName, int skip, int pageSize);
         public Task<List<BasePartDataResponse>> GetItemsOnSalePaginated(string collectionName, int skip, int pageSize);
         public Task CreateComputerBuild(ComputerBuildRequest build);
+
+        public Task<List<ComputerBuildResponse>> GetAllBuilds();
         public Task<ComputerBuildResponse> GetComputerBuildByType(eBuildTypes type);
         public Task<List<string>> VerifyProductExistance(Verification products);
 

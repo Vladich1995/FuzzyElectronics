@@ -1,0 +1,23 @@
+.content {
+    text-align: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 3vh;
+}
+
+.image {
+    width: 10vw;
+    height: 15vh;
+}
+
+.buttonsArea {
+    height: 20vh;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

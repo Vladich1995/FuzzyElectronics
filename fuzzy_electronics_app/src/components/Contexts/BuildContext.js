@@ -224,7 +224,7 @@ export function BuildProvider({ children }) {
     sessionStorage.removeItem('buildMemory');
 
     localStorage.removeItem('buildPCSystem');
-    sessionStorage.removeItem('buildCPCSystem');
+    sessionStorage.removeItem('buildPCSystem');
 
     localStorage.removeItem('buildPeripherals');
     sessionStorage.removeItem('buildPeripherals');

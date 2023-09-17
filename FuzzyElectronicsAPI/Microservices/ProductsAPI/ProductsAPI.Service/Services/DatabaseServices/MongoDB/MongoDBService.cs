@@ -251,6 +251,22 @@ namespace ProductsAPI.Service.Services.DatabaseServices.MongoDB
             await collection.InsertOneAsync(build);
         }
 
+        public async Task<List<ComputerBuildResponse>> GetAllBuilds()
+        {
+            try
+            {
+                var collection = _database.GetCollection<ComputerBuildResponse>("ComputerBuildsCollection");
+                var filter = Builders<ComputerBuildResponse>.Filter.Empty;
+                var builds = await collection.Find(filter).ToListAsync();
+                Console.Write(builds.Count.ToString());
+                return builds;
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
         public async Task<ComputerBuildResponse> GetComputerBuildByType(eBuildTypes type)
         {
             var collection = _database.GetCollection<ComputerBuildResponse>("ComputerBuildsCollection");

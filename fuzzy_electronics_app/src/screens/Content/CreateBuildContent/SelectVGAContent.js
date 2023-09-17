@@ -42,7 +42,8 @@ const SelectVGAContent = (props) => {
     return (
         <>
             <div className={styles.title}>
-                <h1>Select Graphic card-related items: {selectedVGA.length}</h1>
+                <h1 className={styles.titleContent}>Select Graphic card - related items:</h1>
+                {selectedVGA.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
             <div className={styles.content}>
                 {VGAList.length > 0 &&
@@ -51,8 +52,7 @@ const SelectVGAContent = (props) => {
                     ))}
             </div>
             <div className={styles.buttonsArea}>
-                {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}
-                {selectedVGA.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
+                {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}               
             </div>
         </>
     )

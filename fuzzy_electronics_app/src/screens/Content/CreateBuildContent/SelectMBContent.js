@@ -42,7 +42,8 @@ const SelectMBContent = (props) => {
     return (
         <>
             <div className={styles.title}>
-                <h1>Select Motherboard-related items: {selectedMB.length}</h1>
+                <h1 className={styles.titleContent}>Select Motherboard - related items:</h1>
+                {selectedMB.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
             <div className={styles.content}>
                 {MBList.length > 0 &&
@@ -52,7 +53,6 @@ const SelectMBContent = (props) => {
             </div>
             <div className={styles.buttonsArea}>
                 {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}
-                {selectedMB.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
         </>
     )

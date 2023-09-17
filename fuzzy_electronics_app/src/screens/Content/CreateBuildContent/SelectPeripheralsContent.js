@@ -42,7 +42,8 @@ const SelectPeripheralsContent = (props) => {
     return (
         <>
             <div className={styles.title}>
-                <h1>Select Peripherals-related items: {selectedPeripherals.length}</h1>
+                <h1 className={styles.titleContent}>Select Peripherals - related items:</h1>
+                {selectedPeripherals.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
             <div className={styles.content}>
                 {peripheralsList.length > 0 &&
@@ -51,9 +52,7 @@ const SelectPeripheralsContent = (props) => {
                     ))}
             </div>
             <div className={styles.buttonsArea}>
-                {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}
-                {selectedPeripherals.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
-            </div>
+                {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}</div>
         </>
     )
 }

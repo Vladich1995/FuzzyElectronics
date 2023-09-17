@@ -304,5 +304,14 @@ namespace ProductsAPI.Service.Controllers.V1
             return Ok();
         }
 
+
+        [HttpGet]
+        [Route("allbuilds")]
+        public async Task<IActionResult> GetAllBuilds()
+        {
+            var result = await _dBService.GetAllBuilds();
+            return Ok(result);
+        }
+
     }
 }

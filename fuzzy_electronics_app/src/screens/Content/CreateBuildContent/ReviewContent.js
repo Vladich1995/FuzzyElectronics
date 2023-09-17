@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import styles from './ReviewContent.module.css';
 import { useBuild } from '../../../components/Contexts/BuildContext';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import { FaShekelSign } from 'react-icons/fa';
 
 const ReviewContent = () => {
     const {getBuildType,getCases,getCapacity,getMB,getMemory,getCPU,getPCSystem,getPeripherals,getPSU,getVGA, removeData} = useBuild();
@@ -16,6 +18,7 @@ const ReviewContent = () => {
         const storedCases = getCases();
         return storedCases;
     });
+
 
     const [capacity, setCapacity] = useState(() => {
         const storedCapacity = getCapacity();
@@ -57,7 +60,37 @@ const ReviewContent = () => {
         return storedVGA;
     });
 
-
+    const [total, setTotal] = useState(() => {
+      let sum = 0;
+      cases.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      capacity.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      MB.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      memory.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      CPU.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      PCSystem.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      peripherals.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      PSU.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      VGA.forEach(element => {
+        sum += parseInt(element.Price);
+      });
+      return sum;
+    })
 
     const createBuildHandler = async () => {
         try {
@@ -98,9 +131,8 @@ const ReviewContent = () => {
               },
             });
             if(response.status == 200){
-              alert("Type substracted")
               removeData();
-              navigate('/createbuild');
+              navigate('/admin');
             }
       } catch (error) {
         console.log(error);
@@ -108,24 +140,85 @@ const ReviewContent = () => {
     }
 
 
-    console.log(
-        JSON.stringify({
-            BuildType: buildType,
-            Cases: cases,
-            Capacity: capacity,
-            CPU: CPU,
-            MB: MB,
-            Memory: memory,
-            PCSystem: PCSystem,
-            Peripherals: peripherals,
-            PSU: PSU,
-            VGA: VGA
-          })
-    )
+   const cancelCreateHandler = () => {
+    removeData();
+    navigate('/admin');
+   }
 
     return (
         <>
-            <button onClick={createBuildHandler} type="button">Create Build</button>
+            <div className={styles.content}>
+              <label className={styles.title}>Cases related items:</label>
+              {cases != null && cases.map((item) =>               
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p> 
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>Capacity related items:</label>
+              {capacity != null && capacity.map((item) =>               
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p> 
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>Motherboard related items:</label>
+              {MB != null && MB.map((item) =>               
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p>
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>Memory related items:</label>
+              {memory != null && memory.map((item) =>               
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p> 
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>CPU related items:</label>
+              {CPU != null && CPU.map((item) =>               
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p> 
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>PC System related items:</label>
+              {PCSystem != null && PCSystem.map((item) =>               
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p> 
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>Peripherals related items:</label>
+              {peripherals != null && peripherals.map((item) =>               
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p> 
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>PSU related items:</label>
+              {PSU != null && PSU.map((item) =>               
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p> 
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>Graphics card related items:</label>
+              {VGA != null && VGA.map((item) => 
+              <div>
+                <img className={styles.image} src={item.PictureURL} />
+                <p>{item.Description}</p> 
+                <p>{item.Price} <FaShekelSign /></p> 
+              </div>)}
+              <label className={styles.title}>Total deal sum:{total}<FaShekelSign /></label>
+            </div>
+            
+            <div className={styles.buttonsArea}>
+                <Button onClick={createBuildHandler} variant="success">Create build</Button>
+                <Button onClick={cancelCreateHandler} style={{marginTop: "2vh"}} variant="outline-danger">Cancel</Button>
+            </div>
+            
         </>
     );
 }

@@ -42,7 +42,8 @@ const SelectCasesContent = (props) => {
     return (
         <>
             <div className={styles.title}>
-                <h1>Select Cases-related items: {selectedCases.length}</h1>
+                <h1 className={styles.titleContent}>Select Cases - related items:</h1>
+                {selectedCases.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
             <div className={styles.content}>
                 {casesList.length > 0 &&
@@ -52,7 +53,6 @@ const SelectCasesContent = (props) => {
             </div>
             <div className={styles.buttonsArea}>
                 {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}
-                {selectedCases.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
         </>
     )

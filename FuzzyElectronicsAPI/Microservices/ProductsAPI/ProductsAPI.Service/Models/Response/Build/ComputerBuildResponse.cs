@@ -1,10 +1,15 @@
-﻿using ProductsAPI.Service.Models.Enums;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson;
+using ProductsAPI.Service.Models.Enums;
 using ProductsAPI.Service.Models.Request.Build;
 
 namespace ProductsAPI.Service.Models.Response.Build
 {
     public class ComputerBuildResponse
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public eBuildTypes BuildType { get; set; }
         public List<BuildPart> Cases { get; set; }
         public List<BuildPart> Capacity { get; set; }

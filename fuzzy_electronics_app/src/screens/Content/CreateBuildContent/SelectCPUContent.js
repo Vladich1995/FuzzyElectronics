@@ -42,7 +42,8 @@ const SelectCPUContent = (props) => {
     return (
         <>
             <div className={styles.title}>
-                <h1>Select CPU-related items: {selectedCPU.length}</h1>
+                <h1 className={styles.titleContent}>Select CPU - related items:</h1>
+                {selectedCPU.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
             <div className={styles.content}>
                 {CPUList.length > 0 &&
@@ -52,7 +53,6 @@ const SelectCPUContent = (props) => {
             </div>
             <div className={styles.buttonsArea}>
                 {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}
-                {selectedCPU.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
         </>
     )

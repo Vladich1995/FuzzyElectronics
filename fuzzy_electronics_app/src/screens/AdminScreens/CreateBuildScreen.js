@@ -40,28 +40,33 @@ const CreateBuildScreen = () => {
         switch(stage){
             case 1:
                 setToRender(<SelectTypeContent inc={incStage} />);
+                setTypeComplete('info');
                 break;
             case 2:
                 setToRender(<SelectCasesContent inc={incStage} />);
-                changeTypeComplete();
+                setTypeComplete('success');
+                setCasesComplete('info');
                 break;
             case 3:
                 setToRender(<SelectCapacityContent inc={incStage} />);
                 setTypeComplete('success');
-                changeCasesComplete();
+                setCasesComplete('success');
+                setCapacityComplete('info');
                 break;
             case 4:
                 setToRender(<SelectMBContent inc={incStage} />);
                 setTypeComplete('success');
                 setCasesComplete('success');
-                changeCapacityComplete();
+                setCapacityComplete('success');
+                setMBComplete('info');
                 break;
             case 5:
                 setToRender(<SelectCPUContent inc={incStage} />);
                 setTypeComplete('success');
                 setCasesComplete('success');
                 setCapacityComplete('success');
-                changeMBComplete();
+                setMBComplete('success');
+                setCPUComplete('info');
                 break;
             case 6:
                 setToRender(<SelectVGAContent inc={incStage} />);
@@ -69,7 +74,8 @@ const CreateBuildScreen = () => {
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('success');
-                changeCPUComplete();
+                setCPUComplete('success');
+                setVGAComplete('info');
                 break;
             case 7:
                 setToRender(<SelectPCSystemContent inc={incStage} />);
@@ -78,7 +84,8 @@ const CreateBuildScreen = () => {
                 setCapacityComplete('success');
                 setMBComplete('success');
                 setCPUComplete('success');
-                changeVGAComplete();
+                setVGAComplete('success');
+                setPCSystemComplete('info');
                 break;
             case 8:
                 setToRender(<SelectMemoryContent inc={incStage} />);
@@ -88,7 +95,8 @@ const CreateBuildScreen = () => {
                 setMBComplete('success');
                 setCPUComplete('success');
                 setVGAComplete('success');
-                changePCSystemComplete();
+                setPCSystemComplete('success');
+                setMemoryComplete('info');
                 break;
             case 9:
                 setToRender(<SelectPSUContent inc={incStage} />);
@@ -99,7 +107,8 @@ const CreateBuildScreen = () => {
                 setCPUComplete('success');
                 setVGAComplete('success');
                 setPCSystemComplete('success');
-                changeMemoryComplete();
+                setMemoryComplete('success');
+                setPSUComplete('info');
                 break;
             case 10:
                 setToRender(<SelectPeripheralsContent inc={incStage} />);
@@ -111,7 +120,8 @@ const CreateBuildScreen = () => {
                 setVGAComplete('success');
                 setPCSystemComplete('success');
                 setMemoryComplete('success');
-                changePSUComplete();
+                setPSUComplete('success');
+                setPeripheralsComplete('info');
                 break;
             case 11:
                 setToRender(<ReviewContent />);
@@ -124,7 +134,8 @@ const CreateBuildScreen = () => {
                 setPCSystemComplete('success');
                 setMemoryComplete('success');
                 setPSUComplete('success');
-                changePeripheralsComplete();
+                setPeripheralsComplete('success');
+                setReviewComplete('info');
                 break;
 
         }

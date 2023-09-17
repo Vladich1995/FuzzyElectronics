@@ -42,7 +42,8 @@ const SelectPCSystemContent = (props) => {
     return (
         <>
             <div className={styles.title}>
-                <h1>Select PC System-related items: {selectedPCSystem.length}</h1>
+                <h1 className={styles.titleContent}>Select PC System - related items:</h1>
+                {selectedPCSystem.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
             <div className={styles.content}>
                 {PCSystemList.length > 0 &&
@@ -51,8 +52,7 @@ const SelectPCSystemContent = (props) => {
                     ))}
             </div>
             <div className={styles.buttonsArea}>
-                {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}
-                {selectedPCSystem.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
+                {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}              
             </div>
         </>
     )

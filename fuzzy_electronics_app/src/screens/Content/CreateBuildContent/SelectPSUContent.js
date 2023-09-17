@@ -42,7 +42,8 @@ const SelectPSUContent = (props) => {
     return (
         <>
             <div className={styles.title}>
-                <h1>Select PSU-related items: {selectedPSU.length}</h1>
+                <h1 className={styles.titleContent}>Select PSU - related items:</h1>
+                {selectedPSU.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
             <div className={styles.content}>
                 {PSUList.length > 0 &&
@@ -52,7 +53,6 @@ const SelectPSUContent = (props) => {
             </div>
             <div className={styles.buttonsArea}>
                 {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}
-                {selectedPSU.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
         </>
     )

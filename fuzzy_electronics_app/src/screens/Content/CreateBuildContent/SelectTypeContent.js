@@ -19,25 +19,59 @@ const SelectTypeContent = (props) => {
         getAvailableTypes();
     }, [])
 
-    const handleItemClick = (index) => {
-        // Update the selected item when a div is clicked
-        addBuildType(index);
+    const handleItemClick = (index, item) => {
+        switch (item) {
+            case 'GamesCheap':
+                addBuildType(0);
+                break;
+            case 'OfficeCheap':
+                addBuildType(1);
+                break;
+            case 'DesignCheap':
+                addBuildType(2);
+                break;
+            case 'GamesMiddle':
+                addBuildType(3);
+                break;
+            case 'OfficeMiddle':
+                addBuildType(4);
+                break;
+            case 'DesignMiddle':
+                addBuildType(5);
+                break;
+            case 'GamesExpensive':
+                addBuildType(6);
+                break;
+            case 'OfficeExpensive':
+                addBuildType(7);
+                break;
+            case 'DesignExpensive':
+                addBuildType(8);
+                break;
+            
+        }
         setSelectedItem(index);
       };
 
     return (
         <>
             <div className={styles.title}>
-                <h1>Select build type from the following:</h1>
+                <h1 className={styles.titleContent}>Select build type from the following:</h1>
+                {selectedItem != null && (
+                    <div className={styles.button}>
+                    <Button onClick={props.inc} variant="outline-success">
+                        Continue
+                    </Button>
+                    </div>
+                )}
             </div>
             <div className={styles.content}>
                 {availableTypes!=null && availableTypes.map((item, index)=> <div key={index}
                 className={`${styles.item} ${
                 index === selectedItem ? styles.selectedItem : ''
                 }`}
-                onClick={() => handleItemClick(index)}>{item}</div>)}
+                onClick={() => handleItemClick(index, item)}>{item}</div>)}
             </div>
-            {selectedItem!=null && <div className={styles.buttonArea}><Button  onClick={props.inc} variant="outline-success">Continue</Button>{' '}</div>}
         </>
     );
 }

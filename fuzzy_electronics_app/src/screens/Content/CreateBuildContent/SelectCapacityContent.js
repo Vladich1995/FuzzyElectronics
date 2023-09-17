@@ -42,7 +42,8 @@ const SelectCapacityContent = (props) => {
     return (
         <>
             <div className={styles.title}>
-                <h1>Select Capacity-related items: {selectedCapacity.length}</h1>
+                <h1 className={styles.titleContent}>Select Storage - related items:</h1>
+                {selectedCapacity.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
             <div className={styles.content}>
                 {capacityList.length > 0 &&
@@ -52,7 +53,6 @@ const SelectCapacityContent = (props) => {
             </div>
             <div className={styles.buttonsArea}>
                 {moreToLoad && <Button onClick={loadMoreHandler} variant="outline-primary">Load more</Button>}
-                {selectedCapacity.length > 0 &&<Button onClick={props.inc} style={{marginTop: "2vh"}} variant="outline-success">Continue</Button>}
             </div>
         </>
     )
