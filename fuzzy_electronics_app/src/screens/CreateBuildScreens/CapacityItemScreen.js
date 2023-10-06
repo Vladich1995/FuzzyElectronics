@@ -4,11 +4,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FaBuilding, FaShekelSign } from 'react-icons/fa';
 import { useBuild } from '../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../components/Contexts/CustomerBuildContext';
 
 const CapacityItemScreen = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const {addCapacity} = useBuild();
+    const {addCustomerCapacity} = useCustomerBuild();
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
@@ -16,19 +18,36 @@ const CapacityItemScreen = () => {
     }, [])
 
     const addToBuildHandler = () => {
-        addCapacity(
-            {
-                CollectionName: product.collectionName,
-                MakatMorLevi: product.makatMorLevi,
-                Description: product.description,
-                Price: product.price,
-                Category: product.category,
-                Brand: product.brand,
-                Model: product.model,
-                PictureURL: product.pictureURL
-            }
-        );
-        navigate('/createbuild');
+        if(location.state.forCustomer == null){
+            addCapacity(
+                {
+                    CollectionName: product.collectionName,
+                    MakatMorLevi: product.makatMorLevi,
+                    Description: product.description,
+                    Price: product.price,
+                    Category: product.category,
+                    Brand: product.brand,
+                    Model: product.model,
+                    PictureURL: product.pictureURL
+                }
+            );
+            navigate('/createbuild');
+        }
+        else {
+            addCustomerCapacity(
+                {
+                    collectionName: product.collectionName,
+                    makatMorLevi: product.makatMorLevi,
+                    description: product.description,
+                    price: product.price,
+                    category: product.category,
+                    brand: product.brand,
+                    model: product.model,
+                    pictureURL: product.pictureURL
+                }
+            );
+            navigate('/selfBuild');
+        }
     }
 
     return (

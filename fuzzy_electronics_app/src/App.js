@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./components/Contexts/AuthContext";
 import { CartProvider } from "./components/Contexts/CartContext";
 import { BuildProvider } from "./components/Contexts/BuildContext";
+import { CustomerBuildProvider } from "./components/Contexts/CustomerBuildContext";
 import HomeScreen from "./screens/HomeScreen";
 import SignUpScreen from "./screens/Authentication/SignUpScreen";
 import SignInScreen from "./screens/Authentication/SignInScreen";
@@ -25,6 +26,8 @@ import PCSystemItemScreen from "./screens/CreateBuildScreens/PCSystemItemScreen"
 import PeripheralsItemScreen from "./screens/CreateBuildScreens/PeripheralsItemScreen";
 import PSUItemScreen from "./screens/CreateBuildScreens/PSUItemScreen";
 import VGAItemScreen from "./screens/CreateBuildScreens/VGAItemScreen";
+import BuildSuggestionScreen from "./screens/CustomerScreens/BuildSuggestionScreen";
+import CustomerCreateBuildScreen from "./screens/CustomerScreens/CustomerCreateBuildScreen";
 
 function App() {
   return (
@@ -40,32 +43,36 @@ function AppRoutes() {
       <AuthProvider>
         <CartProvider>
           <BuildProvider>
-            <Router>
-              <Routes>
-                <Route path="/" element={<HomeScreen />} exact />
-                <Route path="/signup" element={<SignUpScreen />} exact />
-                <Route path="/signin" element={<SignInScreen />} exact />
-                <Route path="/account" element={<AccountScreen />} exact />
-                <Route path="/home" element={<CustomerHomeScreen />} exact />
-                <Route path="/onsale" element={<OnSaleItemScreen />} exact />
-                <Route path="/cart" element={<CartScreen />} exact />
-                <Route path="/admin" element={<AdminScreen />} exact />
-                <Route path="/createbuild" element={<CreateBuildScreen />} exact />
-                <Route path="/waitingorders" element={<WaitingOrdersScreen />} exact />
-                <Route path="/donedeals" element={<DoneDealsScreen />} exact />
-                <Route path="/clients" element={<ClientsScreen />} exact />
-                <Route path="/adminaccount" element={<AdminAccountScreen />} exact />
-                <Route path="/casesbuild" element={<CasesItemScreen />} exact />
-                <Route path="/capacitybuild" element={<CapacityItemScreen />} exact />
-                <Route path="/cpubuild" element={<CPUItemScreen />} exact />
-                <Route path="/mbbuild" element={<MBItemScreen />} exact />
-                <Route path="/memorybuild" element={<MemoryItemScreen />} exact />
-                <Route path="/pcsystembuild" element={<PCSystemItemScreen />} exact />
-                <Route path="/peripheralsbuild" element={<PeripheralsItemScreen />} exact />
-                <Route path="/psubuild" element={<PSUItemScreen />} exact />
-                <Route path="/vgabuild" element={<VGAItemScreen />} exact />
-              </Routes>
-            </Router>
+            <CustomerBuildProvider>
+              <Router>
+                <Routes>
+                  <Route path="/" element={<HomeScreen />} exact />
+                  <Route path="/signup" element={<SignUpScreen />} exact />
+                  <Route path="/signin" element={<SignInScreen />} exact />
+                  <Route path="/account" element={<AccountScreen />} exact />
+                  <Route path="/home" element={<CustomerHomeScreen />} exact />
+                  <Route path="/onsale" element={<OnSaleItemScreen />} exact />
+                  <Route path="/cart" element={<CartScreen />} exact />
+                  <Route path="/admin" element={<AdminScreen />} exact />
+                  <Route path="/createbuild" element={<CreateBuildScreen />} exact />
+                  <Route path="/waitingorders" element={<WaitingOrdersScreen />} exact />
+                  <Route path="/donedeals" element={<DoneDealsScreen />} exact />
+                  <Route path="/clients" element={<ClientsScreen />} exact />
+                  <Route path="/adminaccount" element={<AdminAccountScreen />} exact />
+                  <Route path="/casesbuild" element={<CasesItemScreen />} exact />
+                  <Route path="/capacitybuild" element={<CapacityItemScreen />} exact />
+                  <Route path="/cpubuild" element={<CPUItemScreen />} exact />
+                  <Route path="/mbbuild" element={<MBItemScreen />} exact />
+                  <Route path="/memorybuild" element={<MemoryItemScreen />} exact />
+                  <Route path="/pcsystembuild" element={<PCSystemItemScreen />} exact />
+                  <Route path="/peripheralsbuild" element={<PeripheralsItemScreen />} exact />
+                  <Route path="/psubuild" element={<PSUItemScreen />} exact />
+                  <Route path="/vgabuild" element={<VGAItemScreen />} exact />
+                  <Route path="/suggest" element={<BuildSuggestionScreen />} exact />
+                  <Route path="/selfBuild" element={<CustomerCreateBuildScreen />} exact />
+                </Routes>
+              </Router>
+            </CustomerBuildProvider>
           </BuildProvider>
         </CartProvider>
       </AuthProvider>

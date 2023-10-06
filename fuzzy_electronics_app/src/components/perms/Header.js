@@ -44,6 +44,14 @@ const Header = (props) => {
     }
   }
 
+  const suggestBuildHandler = () => {
+    navigate('/suggest');
+  }
+
+  const selfBuildHandler = () => {
+    navigate ('/selfBuild');
+  }
+
   return (
       <>
         <Navbar bg="dark" data-bs-theme="dark" className={styles.customNavbar}>
@@ -72,8 +80,8 @@ const Header = (props) => {
                 title="בנה מפרט"
                 variant="dark" // Set the variant to dark
               >
-            <Dropdown.Item className={styles.dropDownItem}>היעזר בנו</Dropdown.Item>
-            <Dropdown.Item className={styles.dropDownItem}>אסתדר לבד</Dropdown.Item>
+            <Dropdown.Item onClick={suggestBuildHandler} className={styles.dropDownItem}>היעזר בנו</Dropdown.Item>
+            <Dropdown.Item onClick={selfBuildHandler} className={styles.dropDownItem}>אסתדר לבד</Dropdown.Item>
           </DropdownButton></span>
               </Nav.Link>
             </Nav>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CasesItem = (props) => {
     const navigate = useNavigate();
     const itemSelectHandler = () => {
-        navigate('/casesbuild', { state: { product: props.product } })
+        navigate('/casesbuild', { state: { product: props.product, forCustomer: props.forCustomer } })
     }
 
     return (

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import PSUItem from './CreateBuildItems/PSUItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectPSUContent = (props) => {
     const [PSUList, setPSUList] = useState([]);
@@ -11,6 +12,7 @@ const SelectPSUContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getPSU} = useBuild();
+    const {getCustomerPSU} = useCustomerBuild();
 
     useEffect(() => {
         const fetchPSU= async () => {
@@ -26,7 +28,7 @@ const SelectPSUContent = (props) => {
         }
 
         setSelectedPSU(() => {
-            const storedItems = getPSU();
+            const storedItems = props.forCustomer == null ? getPSU() : getCustomerPSU();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectPSUContent = (props) => {
             <div className={styles.content}>
                 {PSUList.length > 0 &&
                     PSUList.map((item) => (
-                        <PSUItem key={item.makatMorLevi} product={item} />
+                        <PSUItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>

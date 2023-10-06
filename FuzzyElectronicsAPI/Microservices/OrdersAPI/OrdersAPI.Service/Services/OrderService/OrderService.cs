@@ -75,13 +75,16 @@ namespace OrdersAPI.Service.Services.OrderService
             await _dBService.MarkBuildAsSold(id);
         }
 
-        public async Task HandlePlaceProductOrder(OrderedProduct product)
+        public async Task HandlePlaceProductOrder(List<OrderedProduct> products)
         {
-            var inStock = await _dBService.VerifySingleProductExistance(product.ProductData);
-            if (inStock)
+            foreach (var product in products)
             {
-                OrderedProductDB productDB = OrderRequestExtensions.MapToOrderedProductDB(product);
-                await _dBService.PlaceProductOrderForConfirmation(productDB);
+                var inStock = await _dBService.VerifySingleProductExistance(product.ProductData);
+                if (inStock)
+                {
+                    OrderedProductDB productDB = OrderRequestExtensions.MapToOrderedProductDB(product);
+                    await _dBService.PlaceProductOrderForConfirmation(productDB);
+                }
             }
         }
         public async Task<List<OrderedProductResponse>> HandleGetProductOrdersForConfirmation()

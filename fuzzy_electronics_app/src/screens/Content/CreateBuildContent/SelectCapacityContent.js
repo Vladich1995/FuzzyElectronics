@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import CapacityItem from './CreateBuildItems/CapacityItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectCapacityContent = (props) => {
     const [capacityList, setCapacityList] = useState([]);
@@ -11,6 +12,7 @@ const SelectCapacityContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getCapacity} = useBuild();
+    const {getCustomerCapacity} = useCustomerBuild();
 
     useEffect(() => {
         const fetchCapacity= async () => {
@@ -26,7 +28,7 @@ const SelectCapacityContent = (props) => {
         }
 
         setSelectedCapacity(() => {
-            const storedItems = getCapacity();
+            const storedItems = props.forCustomer == null ? getCapacity() : getCustomerCapacity();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectCapacityContent = (props) => {
             <div className={styles.content}>
                 {capacityList.length > 0 &&
                     capacityList.map((item) => (
-                        <CapacityItem key={item.makatMorLevi} product={item} />
+                        <CapacityItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>

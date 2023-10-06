@@ -2,7 +2,7 @@ import styles from './CustomerHomeScreen.module.css';
 import { useEffect } from 'react';
 import Header from '../components/perms/Header';
 import HomeCarousel from '../components/perms/HomeCarousel';
-import OnSaleItemsContent from './Content/OnSaleItemsContent';
+import ProductsContent from './Content/ProductsContent';
 import { useAuth } from '../components/Contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,8 @@ const CustomerHomeScreen = () => {
     console.log(getUser().email);
     useEffect(() => {
         console.log(getUser().email);
-        if(getUser().email = 'alex@gmail.com'){
+        if(getUser().email == 'alex@gmail.com'){
+            console.log("navigating to admin")
             navigate('/admin');
         }
     }, [])
@@ -20,7 +21,7 @@ const CustomerHomeScreen = () => {
         <div className={styles.pageContainer}>
             <Header />
             <HomeCarousel />
-            <OnSaleItemsContent />
+            <ProductsContent />
         </div>
     );
 }

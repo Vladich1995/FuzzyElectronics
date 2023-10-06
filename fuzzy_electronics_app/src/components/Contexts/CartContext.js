@@ -12,17 +12,17 @@ export function CartProvider({ children }) {
     if (storedProductsList) {
       const productsData = JSON.parse(storedProductsList);
       setProductsList((prevList) => {
-        return [...prevList, ...productsData]
+        // return [...prevList, ...productsData]
+        return productsData;
       });
     }
   }, []);
 
 
-  const addProduct = (newProduct) => {
+  const addProduct = (newProduct, type) => {
     setProductsList((prevList) => {
       const updatedList = [...prevList];
       let productExists = false;
-  
       for (let i = 0; i < updatedList.length; i++) {
         if (updatedList[i].product.makatMorLevi === newProduct.makatMorLevi) {
           // If the product with the same makatMorLevi already exists, update its amount
@@ -34,16 +34,15 @@ export function CartProvider({ children }) {
   
       if (!productExists) {
         // If the product doesn't exist in the cart, add it as a new object
-        updatedList.push({ amount: 1, product: newProduct });
+        updatedList.push({ amount: 1, product: newProduct, type: type });
       }
-  
       localStorage.setItem('cart', JSON.stringify(updatedList));
       return updatedList; // Update the state after setting localStorage
     });
   };
 
 
-  const removeProduct = (makatMorLevi) => {
+  const subProduct = (makatMorLevi) => {
     setProductsList((prevList) => {
       const updatedList = prevList.map((product) => {
         if (product.product.makatMorLevi === makatMorLevi) {
@@ -62,6 +61,14 @@ export function CartProvider({ children }) {
     });
   };
 
+  const removeProduct = (makatMorLevi) => {
+    setProductsList(() => {
+      const filteredList = productsList.filter((product) => product.product.makatMorLevi != makatMorLevi);
+      localStorage.setItem('cart', JSON.stringify(filteredList));
+      return filteredList; // Update the state after setting localStorage
+    });
+  };
+
 
   const getCart = () => {
     const storedProductsList = localStorage.getItem('cart');
@@ -69,8 +76,9 @@ export function CartProvider({ children }) {
     return productsData;
   }
 
+
   return (
-    <CartContext.Provider value={{ productsList, setProductsList, addProduct, getCart, removeProduct }}>
+    <CartContext.Provider value={{ productsList, setProductsList, addProduct, getCart, subProduct, removeProduct}}>
       {children}
     </CartContext.Provider>
   );

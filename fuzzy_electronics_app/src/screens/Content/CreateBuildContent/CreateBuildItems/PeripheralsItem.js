@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const PeripheralsItem = (props) => {
     const navigate = useNavigate();
     const itemSelectHandler = () => {
-        navigate('/peripheralsbuild', { state: { product: props.product } })
+        navigate('/peripheralsbuild', { state: { product: props.product, forCustomer: props.forCustomer } })
     }
 
     return (

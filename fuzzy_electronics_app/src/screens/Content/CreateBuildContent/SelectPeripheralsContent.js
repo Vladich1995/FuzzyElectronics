@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import PeripheralsItem from './CreateBuildItems/PeripheralsItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectPeripheralsContent = (props) => {
     const [peripheralsList, setPeripheralsList] = useState([]);
@@ -11,6 +12,7 @@ const SelectPeripheralsContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getPeripherals} = useBuild();
+    const {getCustomerPeripherals} = useCustomerBuild();
 
     useEffect(() => {
         const fetchPeripherals= async () => {
@@ -26,7 +28,7 @@ const SelectPeripheralsContent = (props) => {
         }
 
         setSelectedPeripherals(() => {
-            const storedItems = getPeripherals();
+            const storedItems = props.forCustomer == null ? getPeripherals() : getCustomerPeripherals();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectPeripheralsContent = (props) => {
             <div className={styles.content}>
                 {peripheralsList.length > 0 &&
                     peripheralsList.map((item) => (
-                        <PeripheralsItem key={item.makatMorLevi} product={item} />
+                        <PeripheralsItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const MBItem = (props) => {
     const navigate = useNavigate();
     const itemSelectHandler = () => {
-        navigate('/mbbuild', { state: { product: props.product } })
+        navigate('/mbbuild', { state: { product: props.product, forCustomer: props.forCustomer } })
     }
 
     return (

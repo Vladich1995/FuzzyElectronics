@@ -1,0 +1,13 @@
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonArea {
+    height: 10vh;
+    width: 30vw;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -4,11 +4,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FaBuilding, FaShekelSign } from 'react-icons/fa';
 import { useBuild } from '../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../components/Contexts/CustomerBuildContext';
 
 const CPUItemScreen = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const {addCPU} = useBuild();
+    const {addCustomerCPU} = useCustomerBuild();
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
@@ -16,17 +18,32 @@ const CPUItemScreen = () => {
     }, [])
 
     const addToBuildHandler = () => {
-        addCPU(            {
-            CollectionName: product.collectionName,
-            MakatMorLevi: product.makatMorLevi,
-            Description: product.description,
-            Price: product.price,
-            Category: product.category,
-            Brand: product.brand,
-            Model: product.model,
-            PictureURL: product.pictureURL
-        });
-        navigate('/createbuild');
+        if(location.state.forCustomer == null){
+            addCPU(            {
+                CollectionName: product.collectionName,
+                MakatMorLevi: product.makatMorLevi,
+                Description: product.description,
+                Price: product.price,
+                Category: product.category,
+                Brand: product.brand,
+                Model: product.model,
+                PictureURL: product.pictureURL
+            });
+            navigate('/createbuild');
+        }
+        else {
+            addCustomerCPU(            {
+                collectionName: product.collectionName,
+                makatMorLevi: product.makatMorLevi,
+                description: product.description,
+                price: product.price,
+                category: product.category,
+                brand: product.brand,
+                model: product.model,
+                pictureURL: product.pictureURL
+            });
+            navigate('/selfBuild');
+        }
     }
 
     return (

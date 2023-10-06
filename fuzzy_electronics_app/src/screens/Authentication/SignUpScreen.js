@@ -4,8 +4,10 @@ import { CDBInput, CDBCard, CDBCardBody, CDBIcon, CDBBtn, CDBLink, CDBContainer 
 import Header from '../../components/perms/Header';
 import { useAuth } from '../../components/Contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SignUpScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [FnameBox, setFnameBox] = useState("");
   const [LnameBox, setLnameBox] = useState("");
   const [EmailBox, setEmailBox] = useState("");
@@ -42,6 +44,7 @@ const SignUpScreen = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
           const response = await fetch('https://gatewayapiserv.azurewebsites.net/CustomersAPI/api/v1/Customers/Create', {
             method: 'POST',
@@ -83,7 +86,7 @@ const SignUpScreen = () => {
   return (
       <div style={{ overflow: 'hidden', height: '100vh' }}>
           <Header />
-          <div className="d-flex justify-content-center align-items-center vh-100">
+          {!isLoading ? <div className="d-flex justify-content-center align-items-center vh-100">
             <CDBContainer>
               <CDBCard style={{ width: '30rem' }} className="mx-auto">
                 <CDBCardBody className="mx-4">
@@ -139,6 +142,17 @@ const SignUpScreen = () => {
               </CDBCard>
             </CDBContainer>
           </div>
+          :
+          <div className={styles.loading}>
+              <ClipLoader
+                  color="black"
+                  loading={isLoading}
+                  size={150}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+              />
+          </div>
+          }
     </div>
   );
 }

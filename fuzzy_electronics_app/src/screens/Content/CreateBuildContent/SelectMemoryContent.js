@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import MemoryItem from './CreateBuildItems/MemoryItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectMemoryContent = (props) => {
     const [memoryList, setMemoryList] = useState([]);
@@ -11,6 +12,7 @@ const SelectMemoryContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getMemory} = useBuild();
+    const {getCustomerMemory} = useCustomerBuild();
 
     useEffect(() => {
         const fetchMemory= async () => {
@@ -26,7 +28,7 @@ const SelectMemoryContent = (props) => {
         }
 
         setSelectedMemory(() => {
-            const storedItems = getMemory();
+            const storedItems = props.forCustomer == null ? getMemory() : getCustomerMemory();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectMemoryContent = (props) => {
             <div className={styles.content}>
                 {memoryList.length > 0 &&
                     memoryList.map((item) => (
-                        <MemoryItem key={item.makatMorLevi} product={item} />
+                        <MemoryItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>

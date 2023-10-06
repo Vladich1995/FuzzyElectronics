@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const VGAItem = (props) => {
     const navigate = useNavigate();
     const itemSelectHandler = () => {
-        navigate('/vgabuild', { state: { product: props.product } })
+        navigate('/vgabuild', { state: { product: props.product, forCustomer: props.forCustomer } })
     }
 
     return (

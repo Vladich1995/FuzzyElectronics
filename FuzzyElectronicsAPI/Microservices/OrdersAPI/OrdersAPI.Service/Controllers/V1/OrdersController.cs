@@ -90,10 +90,10 @@ namespace OrdersAPI.Service.Controllers.V1
         }
 
         [HttpPost]
-        [Route("PlaceProductOrder")]
-        public async Task<IActionResult> PlaceProductOrderForConfirmation([FromBody] OrderedProduct product)
+        [Route("PlaceProductsOrder")]
+        public async Task<IActionResult> PlaceProductsOrderForConfirmation([FromBody] List<OrderedProduct> products)
         {
-            await _orderService.HandlePlaceProductOrder(product);
+            await _orderService.HandlePlaceProductOrder(products);
             return Ok();
         }
 

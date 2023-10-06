@@ -1,0 +1,32 @@
+.container {
+    width: 70vw;
+    height: 80vh;
+    background-color: black;
+    border-style: solid;
+    border-color: rgb(151, 205, 141);
+    border-width: 0.01vh;
+}
+
+.questionContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.question{
+    font-size: 5vh;
+    color: rgb(151, 205, 141);
+    text-align: center;
+}
+
+.buttonsArea {
+    display: flex;
+    margin: auto;
+}
+
+.continueButton {
+    width: 20vw;
+    margin: auto;
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+}

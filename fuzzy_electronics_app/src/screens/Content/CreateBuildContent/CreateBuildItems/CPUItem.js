@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const CPUItem = (props) => {
     const navigate = useNavigate();
     const itemSelectHandler = () => {
-        navigate('/cpubuild', { state: { product: props.product } })
+        navigate('/cpubuild', { state: { product: props.product, forCustomer: props.forCustomer } })
     }
 
     return (

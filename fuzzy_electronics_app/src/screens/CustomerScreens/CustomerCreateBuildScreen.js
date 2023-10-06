@@ -1,9 +1,7 @@
-import styles from './CreateBuildScreen.module.css';
+import styles from './CustomerCreateBuildScreen.module.css';
 import { useState } from 'react';
-import AdminSideBar from '../../components/perms/AdminSideBar';
-import AdminHeader from '../../components/perms/AdminHeader';
-import AdminProgressBar from '../../components/perms/AdminProgressBar';
-import SelectTypeContent from '../Content/CreateBuildContent/SelectTypeContent';
+import Header from '../../components/perms/Header';
+import CustomerProgressBar from '../../components/perms/CustomerProgressBar';
 import SelectCasesContent from '../Content/CreateBuildContent/SelectCasesContent';
 import SelectCapacityContent from '../Content/CreateBuildContent/SelectCapacityContent';
 import SelectMBContent from '../Content/CreateBuildContent/SelectMBContent';
@@ -15,10 +13,9 @@ import SelectPSUContent from '../Content/CreateBuildContent/SelectPSUContent';
 import SelectPeripheralsContent from '../Content/CreateBuildContent/SelectPeripheralsContent';
 import ReviewContent from '../Content/CreateBuildContent/ReviewContent';
 import { useEffect } from 'react';
-import { useBuild } from '../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../components/Contexts/CustomerBuildContext';
 
-const CreateBuildScreen = () => {
-    const [typeComplete, setTypeComplete] = useState("warning");
+const CustomerCreateBuildScreen = () => {
     const [casesComplete, setCasesComplete] = useState("warning");
     const [capacityComplete, setCapacityComplete] = useState("warning");
     const [MBComplete, setMBComplete] = useState("warning");
@@ -29,7 +26,7 @@ const CreateBuildScreen = () => {
     const [PSUComplete, setPSUComplete] = useState("warning");
     const [peripheralsComplete, setPeripheralsComplete] = useState("warning");
     const [reviewComplete, setReviewComplete] = useState("warning");
-    const {addStage, getStage} = useBuild();
+    const {addStage, getStage} = useCustomerBuild();
     const [stage, setStage] = useState(() => {
         const currentStage = getStage();
         return currentStage;
@@ -39,47 +36,37 @@ const CreateBuildScreen = () => {
     useEffect(() => {
         switch(stage){
             case 1:
-                setToRender(<SelectTypeContent inc={incStage} />);
-                setTypeComplete('info');
-                break;
-            case 2:
-                setToRender(<SelectCasesContent inc={incStage} />);
-                setTypeComplete('success');
+                setToRender(<SelectCasesContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('info');
                 break;
-            case 3:
-                setToRender(<SelectCapacityContent inc={incStage} />);
-                setTypeComplete('success');
+            case 2:
+                setToRender(<SelectCapacityContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('info');
                 break;
-            case 4:
-                setToRender(<SelectMBContent inc={incStage} />);
-                setTypeComplete('success');
+            case 3:
+                setToRender(<SelectMBContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('info');
                 break;
-            case 5:
-                setToRender(<SelectCPUContent inc={incStage} />);
-                setTypeComplete('success');
+            case 4:
+                setToRender(<SelectCPUContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('success');
                 setCPUComplete('info');
                 break;
-            case 6:
-                setToRender(<SelectVGAContent inc={incStage} />);
-                setTypeComplete('success');
+            case 5:
+                setToRender(<SelectVGAContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('success');
                 setCPUComplete('success');
                 setVGAComplete('info');
                 break;
-            case 7:
-                setToRender(<SelectPCSystemContent inc={incStage} />);
-                setTypeComplete('success');
+            case 6:
+                setToRender(<SelectPCSystemContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('success');
@@ -87,9 +74,8 @@ const CreateBuildScreen = () => {
                 setVGAComplete('success');
                 setPCSystemComplete('info');
                 break;
-            case 8:
-                setToRender(<SelectMemoryContent inc={incStage} />);
-                setTypeComplete('success');
+            case 7:
+                setToRender(<SelectMemoryContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('success');
@@ -98,9 +84,8 @@ const CreateBuildScreen = () => {
                 setPCSystemComplete('success');
                 setMemoryComplete('info');
                 break;
-            case 9:
-                setToRender(<SelectPSUContent inc={incStage} />);
-                setTypeComplete('success');
+            case 8:
+                setToRender(<SelectPSUContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('success');
@@ -110,9 +95,8 @@ const CreateBuildScreen = () => {
                 setMemoryComplete('success');
                 setPSUComplete('info');
                 break;
-            case 10:
-                setToRender(<SelectPeripheralsContent inc={incStage} />);
-                setTypeComplete('success');
+            case 9:
+                setToRender(<SelectPeripheralsContent inc={incStage} forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('success');
@@ -123,9 +107,8 @@ const CreateBuildScreen = () => {
                 setPSUComplete('success');
                 setPeripheralsComplete('info');
                 break;
-            case 11:
-                setToRender(<ReviewContent />);
-                setTypeComplete('success');
+            case 10:
+                setToRender(<ReviewContent forCustomer={true} />);
                 setCasesComplete('success');
                 setCapacityComplete('success');
                 setMBComplete('success');
@@ -149,10 +132,9 @@ const CreateBuildScreen = () => {
 
     return (
         <>
-            <AdminHeader />
-            <div style={{width: '85vw'}}>
-                <AdminProgressBar 
-                    typeComplete={typeComplete} 
+            <Header />
+            <div style={{width: '85vw', margin:'auto'}}>
+                <CustomerProgressBar 
                     casesComplete={casesComplete} 
                     capacityComplete={capacityComplete} 
                     CPUComplete={CPUComplete}
@@ -169,12 +151,9 @@ const CreateBuildScreen = () => {
                 <div className={styles.content}>
                     {toRender}
                 </div>
-                <div className={styles.sideBar}>
-                    <AdminSideBar item={"createBuild"} />
-                </div>
             </div>
         </>
     );
 }
 
-export default CreateBuildScreen;
+export default CustomerCreateBuildScreen;

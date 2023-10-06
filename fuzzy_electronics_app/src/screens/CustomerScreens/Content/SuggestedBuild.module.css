@@ -1,0 +1,16 @@
+.container {
+    width: 70vw;
+    height: 80vh;
+    background-color: black;
+    border-style: solid;
+    border-color: rgb(151, 205, 141);
+    border-width: 0.01vh;
+    overflow-y: auto;
+}
+
+.buildContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+

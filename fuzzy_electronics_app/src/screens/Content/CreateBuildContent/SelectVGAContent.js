@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import VGAItem from './CreateBuildItems/VGAItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectVGAContent = (props) => {
     const [VGAList, setVGAList] = useState([]);
@@ -11,6 +12,7 @@ const SelectVGAContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getVGA} = useBuild();
+    const {getCustomerVGA} = useCustomerBuild();
 
     useEffect(() => {
         const fetchVGA= async () => {
@@ -26,7 +28,7 @@ const SelectVGAContent = (props) => {
         }
 
         setSelectedVGA(() => {
-            const storedItems = getVGA();
+            const storedItems = props.forCustomer == null ? getVGA() : getCustomerVGA();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectVGAContent = (props) => {
             <div className={styles.content}>
                 {VGAList.length > 0 &&
                     VGAList.map((item) => (
-                        <VGAItem key={item.makatMorLevi} product={item} />
+                        <VGAItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>

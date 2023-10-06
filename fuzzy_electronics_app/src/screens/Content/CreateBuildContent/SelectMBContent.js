@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import MBItem from './CreateBuildItems/MBItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectMBContent = (props) => {
     const [MBList, setMBList] = useState([]);
@@ -11,6 +12,7 @@ const SelectMBContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getMB} = useBuild();
+    const {getCustomerMB} = useCustomerBuild();
 
     useEffect(() => {
         const fetchMB = async () => {
@@ -26,7 +28,7 @@ const SelectMBContent = (props) => {
         }
 
         setSelectedMB(() => {
-            const storedItems = getMB();
+            const storedItems = props.forCustomer == null ? getMB() : getCustomerMB();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectMBContent = (props) => {
             <div className={styles.content}>
                 {MBList.length > 0 &&
                     MBList.map((item) => (
-                        <MBItem key={item.makatMorLevi} product={item} />
+                        <MBItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>

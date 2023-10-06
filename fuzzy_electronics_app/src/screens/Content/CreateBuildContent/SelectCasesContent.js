@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import CasesItem from './CreateBuildItems/CasesItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectCasesContent = (props) => {
     const [casesList, setCasesList] = useState([]);
@@ -11,6 +12,7 @@ const SelectCasesContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getCases} = useBuild();
+    const {getCustomerCases} = useCustomerBuild();
 
     useEffect(() => {
         const fetchCases = async () => {
@@ -26,7 +28,7 @@ const SelectCasesContent = (props) => {
         }
         
         setSelectedCases(() => {
-            const storedItems = getCases();
+            const storedItems = props.forCustomer == null ? getCases() : getCustomerCases();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectCasesContent = (props) => {
             <div className={styles.content}>
                 {casesList.length > 0 &&
                     casesList.map((item) => (
-                        <CasesItem key={item.makatMorLevi} product={item} />
+                        <CasesItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>

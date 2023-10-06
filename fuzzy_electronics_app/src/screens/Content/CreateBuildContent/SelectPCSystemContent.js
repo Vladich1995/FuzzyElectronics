@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import PCSystemItem from './CreateBuildItems/PCSystemItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectPCSystemContent = (props) => {
     const [PCSystemList, setPCSystemList] = useState([]);
@@ -11,6 +12,7 @@ const SelectPCSystemContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getPCSystem} = useBuild();
+    const {getCustomerPCSystem} = useCustomerBuild();
 
     useEffect(() => {
         const fetchPCSystem= async () => {
@@ -26,7 +28,7 @@ const SelectPCSystemContent = (props) => {
         }
 
         setSelectedPCSystem(() => {
-            const storedItems = getPCSystem();
+            const storedItems = props.forCustomer == null ? getPCSystem() : getCustomerPCSystem();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectPCSystemContent = (props) => {
             <div className={styles.content}>
                 {PCSystemList.length > 0 &&
                     PCSystemList.map((item) => (
-                        <PCSystemItem key={item.makatMorLevi} product={item} />
+                        <PCSystemItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>

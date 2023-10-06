@@ -6,7 +6,7 @@ import CapacityItemScreen from '../../../CreateBuildScreens/CapacityItemScreen';
 const CapacityItem = (props) => {
     const navigate = useNavigate();
     const itemSelectHandler = () => {
-        navigate('/capacitybuild', { state: { product: props.product } })
+        navigate('/capacitybuild', { state: { product: props.product, forCustomer: props.forCustomer } })
     }
 
     return (

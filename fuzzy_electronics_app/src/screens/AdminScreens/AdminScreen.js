@@ -11,6 +11,7 @@ const AdminScreen = () => {
         const fetchBuilds = async () => {
             const response = await fetch(`https://gatewayapiserv.azurewebsites.net/ProductsAPI/api/v1/Products/allbuilds`);
             const responseData = await response.json();
+            console.log(responseData)
             if(responseData.length == 0){
                 alert("No builds to show");
             }

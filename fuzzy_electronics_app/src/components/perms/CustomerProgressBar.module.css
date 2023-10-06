@@ -1,0 +1,7 @@
+.borders {
+    border-right-style: solid;
+    border-right-width: 0.01vw;
+    border-color: black;
+    width: 8.5vw;
+    font-size: 1.5vh;
+}

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const MemoryItem = (props) => {
     const navigate = useNavigate();
     const itemSelectHandler = () => {
-        navigate('/memorybuild', { state: { product: props.product } })
+        navigate('/memorybuild', { state: { product: props.product, forCustomer: props.forCustomer } })
     }
 
     return (

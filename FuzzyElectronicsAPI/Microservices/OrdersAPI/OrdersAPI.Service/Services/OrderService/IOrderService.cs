@@ -17,7 +17,7 @@ namespace OrdersAPI.Service.Services.OrderService
         public Task<List<OrderedBuildDB>> HandleGetBuildOrdersByCustomer(string customerId);
 
 
-        public Task HandlePlaceProductOrder(OrderedProduct product);
+        public Task HandlePlaceProductOrder(List<OrderedProduct> product);
         public Task<List<OrderedProductResponse>> HandleGetProductOrdersForConfirmation();
         public Task HandleConfirmProductOrderById(string id);
         public Task<List<OrderedProductResponse>> HandleGetAllProductOrders(int skip, int pageSize);

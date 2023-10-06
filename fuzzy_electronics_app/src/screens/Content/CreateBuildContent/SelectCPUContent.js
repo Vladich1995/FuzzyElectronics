@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import CPUItem from './CreateBuildItems/CPUItem';
 import Button from 'react-bootstrap/Button';
 import { useBuild } from '../../../components/Contexts/BuildContext';
+import { useCustomerBuild } from '../../../components/Contexts/CustomerBuildContext';
 
 const SelectCPUContent = (props) => {
     const [CPUList, setCPUList] = useState([]);
@@ -11,6 +12,7 @@ const SelectCPUContent = (props) => {
     const [moreToLoad, setMoreToLoad] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const {getCPU} = useBuild();
+    const {getCustomerCPU} = useCustomerBuild();
 
     useEffect(() => {
         const fetchCPU= async () => {
@@ -26,7 +28,7 @@ const SelectCPUContent = (props) => {
         }
 
         setSelectedCPU(() => {
-            const storedItems = getCPU();
+            const storedItems = props.forCustomer == null ? getCPU() : getCustomerCPU();
             return storedItems ? storedItems : [];
         })
 
@@ -48,7 +50,7 @@ const SelectCPUContent = (props) => {
             <div className={styles.content}>
                 {CPUList.length > 0 &&
                     CPUList.map((item) => (
-                        <CPUItem key={item.makatMorLevi} product={item} />
+                        <CPUItem key={item.makatMorLevi} product={item} forCustomer={props.forCustomer} />
                     ))}
             </div>
             <div className={styles.buttonsArea}>
